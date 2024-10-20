@@ -1,10 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+ 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:travel_in/screens/details_screen/booking_details_screen.dart';
 import 'package:travel_in/screens/details_screen/offer_detail_screen.dart';
 import 'package:travel_in/screens/main_screens/booking_screen.dart';
 import 'package:travel_in/screens/main_screens/search_screen.dart';
+
+import 'package:travel_in/screens/auth/forgot_password_screen.dart';
+import 'package:travel_in/screens/auth/log_in_screen.dart';
+import 'package:travel_in/screens/auth/new_password_screen.dart';
+import 'package:travel_in/screens/auth/sign_up_screen.dart';
+import 'package:travel_in/screens/main_screens/home_screen.dart';
+import 'package:travel_in/screens/main_screens/profile/profile_info_screen.dart';
+import 'package:travel_in/screens/main_screens/profile/profile_screen.dart';
+import 'package:travel_in/screens/onboardings/onboarding1.dart';
 
 void main() {
   runApp(MainApp());
@@ -39,5 +49,6 @@ class MainApp extends StatelessWidget {
           // useMaterial3: true,
         ),
         home: SearchScreen());
+
   }
 }
