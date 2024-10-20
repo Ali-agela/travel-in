@@ -4,9 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_in/helper/constant.dart';
 
 class Label extends StatelessWidget {
-  const Label({super.key, required this.title, required this.subTitle});
+  const Label(
+      {super.key, required this.title, this.subTitle, this.fontSize = 16});
   final String title;
-  final String subTitle;
+  final String? subTitle;
+  final double fontSize;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,16 +22,18 @@ class Label extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        SizedBox(height: 8),
-        Text(
-          subTitle,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.cairo(
-            color: greytxt,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
+        SizedBox(height: subTitle != null ? 8 : 0),
+        subTitle != null
+            ? Text(
+                subTitle!,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.cairo(
+                  color: greytxt,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w400,
+                ),
+              )
+            : SizedBox()
       ],
     );
   }

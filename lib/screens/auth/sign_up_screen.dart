@@ -121,6 +121,15 @@ class SignUpScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Text(
+                            'ليس لديك حساب؟',
+                            textDirection: TextDirection.ltr,
+                            style: GoogleFonts.cairo(
+                              color: greytxt,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                           TextButton(
                             onPressed: () {
                               print('pressed');
@@ -135,15 +144,7 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text(
-                            'ليس لديك حساب؟',
-                            textDirection: TextDirection.ltr,
-                            style: GoogleFonts.cairo(
-                              color: greytxt,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
+                          
                         ],
                       ),
                     ],

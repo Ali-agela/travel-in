@@ -30,8 +30,8 @@ class _CustomeTextBoxState extends State<CustomeTextBox> {
         contentPadding: const EdgeInsets.symmetric(vertical: 17),
         filled: true,
         fillColor: Color(0xfff3f4f6),
-        prefixIcon: widget.preFexIcon,
-        suffixIcon: Padding(
+        suffixIcon: widget.preFexIcon,
+        prefixIcon: Padding(
           padding: EdgeInsets.only(left: 24, right: 17),
           child: Image.asset(
             widget.imagePath,
