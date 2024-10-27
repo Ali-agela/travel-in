@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+import 'package:travel_in/provider/resorts_provider.dart';
+
 import 'package:travel_in/widgets/buttons/back_button.dart';
 import 'package:travel_in/widgets/card/resort_offer_card.dart';
 import 'package:travel_in/widgets/images/top_image.dart';
@@ -15,11 +19,40 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<String> resorts = ['resort1.png', 'resort2.png', 'resort3.png'];
-  List<String> trips = ['trip1.png', 'trip2.png', 'trip3.png'];
-  List<String> soon = ['soon1.png', 'soon2.png', 'soon3.png'];
+
   @override
   Widget build(BuildContext context) {
+    return Consumer<ResortsProvider>(
+      builder: (context, resortsConsumer, child) {
+        return Scaffold(
+            backgroundColor: Colors.white,
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TopImage(),
+                ScrollViewH(
+                  title: "الأعلى تقييماً",
+                  resorts: resortsConsumer.resorts,
+                ),
+                ScrollViewH(
+                  title: "مضافة حديثاً",
+                 resorts: resortsConsumer.resorts,
+                ),
+                Label(
+                  title: "أفضل العروض",
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      padding: EdgeInsets.all(10),
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return ResortOfferCard();
+                      }),
+                ),
+              ],
+            ));
+      }
+=======
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,

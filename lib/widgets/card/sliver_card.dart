@@ -1,18 +1,18 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/helper/size.dart';
 import 'package:travel_in/widgets/buttons/back_button.dart';
 import 'package:travel_in/widgets/buttons/back_button_opacity.dart';
 import 'package:travel_in/widgets/buttons/like_button.dart';
 import 'package:travel_in/widgets/images/swiper_image.dart';
+import 'package:travel_in/models/ResortModel.dart' as resort_model;
 
 class SliverCard extends StatelessWidget {
-  const SliverCard({super.key, this.children = const [SizedBox()]});
+  const SliverCard({super.key, this.children = const [SizedBox()], required this.images});
   final List<Widget> children;
-
+  final List<resort_model.Image> images ;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -49,18 +49,10 @@ class SliverCard extends StatelessWidget {
               loop: true,
               autoplayDelay: 7000,
               children: [
-                SwiperImage(
-                  index: 1,
-                  image: "assets/pics/1.png",
-                ),
-                SwiperImage(
-                  index: 2,
-                  image: "assets/pics/2.png",
-                ),
-                SwiperImage(
-                  index: 3,
-                  image: "assets/pics/3.png",
-                ),
+                ...List<SwiperImage>.from(images.map((e) => SwiperImage(
+                      index: images.indexOf(e),
+                      image: e.imageUrl,
+                    ))),
               ]),
           ...children,
                        Padding(

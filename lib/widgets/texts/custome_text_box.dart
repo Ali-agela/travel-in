@@ -10,12 +10,14 @@ class CustomeTextBox extends StatefulWidget {
       required this.imagePath,
       required this.controller,
       this.isPassword = false,
-      this.preFexIcon});
+      this.preFexIcon,
+      required this.validate});
   final String hintText;
   final String imagePath;
   final TextEditingController controller;
   final bool isPassword;
   final Widget? preFexIcon;
+  final FormFieldValidator<String?> validate;
   @override
   State<CustomeTextBox> createState() => _CustomeTextBoxState();
 }
@@ -24,6 +26,7 @@ class _CustomeTextBoxState extends State<CustomeTextBox> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validate,
       obscureText: widget.isPassword,
       controller: widget.controller,
       decoration: InputDecoration(

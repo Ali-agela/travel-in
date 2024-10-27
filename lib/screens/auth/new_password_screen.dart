@@ -1,5 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:travel_in/screens/auth/log_in_screen.dart';
+
 import 'package:travel_in/widgets/buttons/back_button.dart';
+
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/images/top_image.dart';
 import 'package:travel_in/widgets/texts/custome_text_box.dart';
@@ -12,6 +17,7 @@ class NewPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+ 
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
