@@ -8,7 +8,7 @@ const Color textColor = Color(0xFFFFFFFF);
 const Color cardGrey = Color(0xFFA0A0A0);
 
 // ---------------------------- COLORS -----------------------------
-
+const Color whitegrey = Color(0xFFF7F7F9);
 const Color white = Color(0xFFFEFCFF);
 const Color yellow = Color(0xFFFCC415);
 const Color baleblue = Color(0xFF6FCCCC);
@@ -19,6 +19,8 @@ const Color lightgrey = Color(0xFFD6D6D6);
 const Color txtcolor = Color(0xFF464646);
 const Color darktxtcolor = Color(0xFF2F2F2F);
 const Color dividercolor = Color(0xFF5E5E5E);
+
+
 
 
 // ---------------------------- TEXT STYLES -----------------------------

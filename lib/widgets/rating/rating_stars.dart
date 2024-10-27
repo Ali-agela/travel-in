@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_in/helper/constant.dart';
 
 class RatingStars extends StatefulWidget {
   const RatingStars({super.key});
@@ -27,8 +28,8 @@ class _RatingStarsState extends State<RatingStars> {
               }
             },
             icon: rating > 0
-                ? Icon(Icons.star)
-                : Icon(Icons.star_border_outlined)),
+                ? Icon(Icons.star, color: yellow,)
+                : Icon(Icons.star_border_outlined, color: Colors.black,)),
         IconButton(
             onPressed: () {
               if (rating == 2) {
@@ -42,8 +43,8 @@ class _RatingStarsState extends State<RatingStars> {
               }
             },
             icon: rating > 1
-                ? Icon(Icons.star)
-                : Icon(Icons.star_border_outlined)),
+                ? Icon(Icons.star, color: yellow,)
+                : Icon(Icons.star_border_outlined, color: Colors.black,)),
         IconButton(
             onPressed: () {
               if (rating == 3) {
@@ -57,8 +58,8 @@ class _RatingStarsState extends State<RatingStars> {
               }
             },
             icon: rating > 2
-                ? Icon(Icons.star)
-                : Icon(Icons.star_border_outlined)),
+                ? Icon(Icons.star, color: yellow,)
+                : Icon(Icons.star_border_outlined, color: Colors.black,)),
         IconButton(
             onPressed: () {
               if (rating == 4) {
@@ -72,8 +73,8 @@ class _RatingStarsState extends State<RatingStars> {
               }
             },
             icon: rating > 3
-                ? Icon(Icons.star)
-                : Icon(Icons.star_border_outlined)),
+                ? Icon(Icons.star, color: yellow,)
+                : Icon(Icons.star_border_outlined, color: Colors.black,)),
         IconButton(
             onPressed: () {
               if (rating == 5) {
@@ -87,8 +88,8 @@ class _RatingStarsState extends State<RatingStars> {
               }
             },
             icon: rating > 4
-                ? Icon(Icons.star)
-                : Icon(Icons.star_border_outlined)),
+                ? Icon(Icons.star, color: yellow, )
+                : Icon(Icons.star_border_outlined, color: Colors.black,)),
       ],
     );
   }
