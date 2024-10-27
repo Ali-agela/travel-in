@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class whiteButton extends StatelessWidget {
-  const whiteButton({super.key, required this.onTap, required this.buttonText});
+  const whiteButton({super.key, required this.onTap, required this.buttonText, this.width =312});
   final Function onTap;
   final String buttonText;
-  
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +19,11 @@ class whiteButton extends StatelessWidget {
         ),
       ),
       onPressed: () {
-          onTap();
+        onTap();
       },
-      child:  SizedBox(
+      child: SizedBox(
         height: 58,
-        width: 312,
+        width: width,
         child: Center(
           child: Text(
             buttonText,

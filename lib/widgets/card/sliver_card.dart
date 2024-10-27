@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/helper/size.dart';
+import 'package:travel_in/widgets/buttons/back_button.dart';
+import 'package:travel_in/widgets/buttons/back_button_opacity.dart';
+import 'package:travel_in/widgets/buttons/like_button.dart';
 import 'package:travel_in/widgets/images/swiper_image.dart';
 import 'package:travel_in/models/ResortModel.dart' as resort_model;
 
@@ -52,6 +55,27 @@ class SliverCard extends StatelessWidget {
                     ))),
               ]),
           ...children,
+                       Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [ 
+                              GestureDetector(
+                                onTap: (){
+                                },
+                                child: CustomBackButtonwithOpacity()
+                              ),
+
+                              GestureDetector(
+                                onTap: (){
+                                },
+                                child: CustomLikeButton()
+                              ),
+
+                              ],
+                            ),
+                          ),
+
         ],
       )),
     );

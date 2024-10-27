@@ -59,6 +59,7 @@ class LogInScreen extends StatelessWidget {
                         }
                         return null;
                       },
+
                       hintText: "كلمة المرور",
                       imagePath: "assets/icons/lock.png",
                       controller: passwordController,
@@ -68,11 +69,14 @@ class LogInScreen extends StatelessWidget {
                       children: [
                         TextButton(
                           onPressed: () {
+
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         ForgotPasswordScreen()));
+                            print('pressed');
+
                           },
                           child: Text(
                             'نسيت كلمة المرور؟',
@@ -87,6 +91,7 @@ class LogInScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 20),
+
                     BlueButton(
                         onTap: () {
                           print('Log IN reqest ');
@@ -113,6 +118,7 @@ class LogInScreen extends StatelessWidget {
                           }
                         },
                         buttonText: "تسجيل الدخول"),
+
                     SizedBox(height: 35),
                     OrDivider(),
                     SizedBox(height: 50),
@@ -122,19 +128,28 @@ class LogInScreen extends StatelessWidget {
                           VendorIcon(
                             path: "assets/icons/google.png",
                             onTap: () {
+
                               print('LOG IN WTH Google');
+
                             },
                           ),
                           VendorIcon(
                             path: "assets/icons/apple.png",
-                            onTap: () {
+
                               print('LOG IN WTH Appale');
+
+                              print('pressed');
+
                             },
                           ),
                           VendorIcon(
                             path: "assets/icons/facebook.png",
                             onTap: () {
+
                               print('LOG IN WTH facebook');
+
+                              print('pressed');
+
                             },
                           ),
                         ]),
@@ -153,11 +168,15 @@ class LogInScreen extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
+
                             Navigator.pushReplacement(
                                 context,
                                 CupertinoDialogRoute(
                                     builder: (builder) => SignUpScreen(),
                                     context: context));
+
+                            print('pressed');
+
                           },
                           child: Text(
                             'إنشاء حساب',
