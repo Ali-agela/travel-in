@@ -26,53 +26,48 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-
         backgroundColor: Colors.white,
         body: Center(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Stack(children: [
-                   TopImage(),
-                         Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [ 
+            child: Form(
+              key: formkey,
+              child: Column(
+                children: [
+                  Stack(children: [
+                    TopImage(),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
                           GestureDetector(
-                            onTap: (){
-                            },
-                            child: CustomBackButton()
-                          ),
-                          ],
-                        ),
+                              onTap: () {}, child: CustomBackButton()),
+                        ],
                       ),
-        
-                   ]),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                  child: Column(
-                    children: [
-                      Label(
-                          title: "لنبدأ الرحلة ",
-                          subTitle: "قم بتعبئة البيانات الأتية "),
-                      SizedBox(height: 20),
-                      CustomeTextBox(
-                        validate: (value) {
+                    ),
+                  ]),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                    child: Column(
+                      children: [
+                        Label(
+                            title: "لنبدأ الرحلة ",
+                            subTitle: "قم بتعبئة البيانات الأتية "),
+                        SizedBox(height: 20),
+                        CustomeTextBox(
+                            validate: (value) {
                               if (value!.isEmpty) {
                                 return 'الرجاء ادخال الاسم';
                               }
                               return null;
                             },
-                          hintText: "الاسم",
-                          imagePath: "assets/icons/person.png",
-                          controller: nameController),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CustomeTextBox(
-                        validate: (value) {
-                             CustomeTextBox(
+                            hintText: "الاسم",
+                            imagePath: "assets/icons/person.png",
+                            controller: nameController),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CustomeTextBox(
                             validate: (value) {
                               if (value!.isEmpty) {
                                 return 'الرجاء ادخال رقم الهاتف';
@@ -81,8 +76,7 @@ class SignUpScreen extends StatelessWidget {
                                 return 'الرجاء ادخال رقم هاتف صحيح';
                               }
                               return null;
-              
-                              },
+                            },
                             hintText: "رقم الهاتف",
                             imagePath: "assets/icons/phone.png",
                             controller: phoneController),

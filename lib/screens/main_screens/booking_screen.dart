@@ -39,36 +39,70 @@ class _BookingScreenState extends State<BookingScreen> {
           //     child: Icon(Icons.notifications),
           //   ),
           // ),
-          body: Stack(
-            children: [
-              TopImage(),
-              DefaultTabController(
-                initialIndex: 0,
-                length: 2,
-                child: Column(children: [
-                  SizedBox(
-                    height: getSize(context).height * 0.15,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Color(0xffF2F4F5),
-                      borderRadius: BorderRadius.circular(20),
+          body: SafeArea(
+            child: Stack(
+              children: [
+                TopImage(),
+                CenterAppTitle(title: "الحجوزات"),
+                Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [ 
+                                GestureDetector(
+                                  onTap: (){
+                                  },
+                                  child: CustomBackButton()
+                                ),
+                                ],
+                              ),
+                            ),
+                DefaultTabController(
+                  initialIndex: 0,
+                  length: 2,
+                  child: Column(children: [
+                    SizedBox(
+                      height: getSize(context).height * 0.15,
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-                    child: TabBar(
-                        dividerColor: Colors.transparent,
-                        indicatorColor: Colors.transparent,
-                        onTap: (tabIndex) {
-                          setState(() {
-                            index = tabIndex;
-                          });
-                        },
-                        tabs: [
-                          Tab(
-                            child: Container(
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Color(0xffF2F4F5),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                      child: TabBar(
+                          dividerColor: Colors.transparent,
+                          indicatorColor: Colors.transparent,
+                          onTap: (tabIndex) {
+                            setState(() {
+                              index = tabIndex;
+                            });
+                          },
+                          tabs: [
+                            Tab(
+                              child: Container(
+                                width: getSize(context).width * 0.5,
+                                decoration: index == 0
+                                    ? BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white,
+                                      )
+                                    : null,
+                                child: Center(
+                                  child: Text(
+                                    "حجوزات قادمة",
+                                    style: TextStyle(
+                                        color:
+                                            index == 0 ? Colors.black : Colors.grey),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Tab(
+                                child: Container(
                               width: getSize(context).width * 0.5,
-                              decoration: index == 0
+                              decoration: index == 1
                                   ? BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.white,
@@ -76,49 +110,30 @@ class _BookingScreenState extends State<BookingScreen> {
                                   : null,
                               child: Center(
                                 child: Text(
-                                  "حجوزات قادمة",
+                                  "المفضلة",
                                   style: TextStyle(
-                                      color:
-                                          index == 0 ? Colors.black : Colors.grey),
+                                      color: index == 1 ? Colors.black : Colors.grey),
                                 ),
                               ),
-                            ),
-                          ),
-                          Tab(
-                              child: Container(
-                            width: getSize(context).width * 0.5,
-                            decoration: index == 1
-                                ? BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,
-                                  )
-                                : null,
-                            child: Center(
-                              child: Text(
-                                "المفضلة",
-                                style: TextStyle(
-                                    color: index == 1 ? Colors.black : Colors.grey),
+                            )),
+                          ]),
+                    ),
+                    Expanded(
+                      child: TabBarView(children: [
+                        thereIsData
+                            ? ListView.builder(
+                                itemCount: 5,
+                                itemBuilder: (context, index) {
+                                  return BookedCard();
+                                })
+                            : Center(
+                                child: Text(
+                                  "لا يوجد حجوزات",
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ),
-                            ),
-                          )),
-                        ]),
-                  ),
-                  Expanded(
-                    child: TabBarView(children: [
-                      thereIsData
-                          ? ListView.builder(
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                return BookedCard();
-                              })
-                          : Center(
-                              child: Text(
-                                "لا يوجد حجوزات",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                      thereIsFav
-                          ? Column(
+                        thereIsFav
+                            ?  Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                   ScrollViewH(
@@ -135,160 +150,20 @@ class _BookingScreenState extends State<BookingScreen> {
                                         }),
                                   ),
                                 ])
-                          : Center(
-                              child: Text(
-                                "لا يوجد حجوزات",
-                                style: TextStyle(fontSize: 20),
+                            : Center(
+                                child: Text(
+                                  "لا يوجد حجوزات",
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ),
-                            ),
-                    ]),
-                  ),
-                ]),
-              )
-            ],
+                      ]),
+                    ),
+                  ]),
+                )
+              ],
+            ),
           ),
         );
-      }
-
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   title: Text("الحجوزات "),
-        //   centerTitle: true,
-        //   leading: Container(
-        //     decoration: BoxDecoration(
-        //       color: Colors.white,
-        //       shape: BoxShape.circle,
-        //     ),
-        //     padding: EdgeInsets.all(10),
-        //     child: Icon(Icons.notifications),
-        //   ),
-        // ),
-        body: Stack(
-          children: [
-            TopImage(),
-            CenterAppTitle(title: "الحجوزات"),
-             Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [ 
-                              GestureDetector(
-                                onTap: (){
-                                },
-                                child: CustomBackButton()
-                              ),
-                              ],
-                            ),
-                          ),
-            DefaultTabController(
-              initialIndex: 0,
-              length: 2,
-              child: Column(children: [
-                SizedBox(
-                  height: getSize(context).height * 0.15,
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    color: Color(0xffF2F4F5),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-                  child: TabBar(
-                      dividerColor: Colors.transparent,
-                      indicatorColor: Colors.transparent,
-                      onTap: (tabIndex) {
-                        setState(() {
-                          index = tabIndex;
-                        });
-                      },
-                      tabs: [
-                        Tab(
-                          child: Container(
-                            width: getSize(context).width * 0.5,
-                            decoration: index == 0
-                                ? BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,
-                                  )
-                                : null,
-                            child: Center(
-                              child: Text(
-                                "حجوزات قادمة",
-                                style: TextStyle(
-                                    color:
-                                        index == 0 ? Colors.black : Colors.grey),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Tab(
-                            child: Container(
-                          width: getSize(context).width * 0.5,
-                          decoration: index == 1
-                              ? BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                )
-                              : null,
-                          child: Center(
-                            child: Text(
-                              "المفضلة",
-                              style: TextStyle(
-                                  color: index == 1 ? Colors.black : Colors.grey),
-                            ),
-                          ),
-                        )),
-                      ]),
-                ),
-                Expanded(
-                  child: TabBarView(children: [
-                    thereIsData
-                        ? ListView.builder(
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return BookedCard();
-                            })
-                        : Center(
-                            child: Text(
-                              "لا يوجد حجوزات",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                    thereIsFav
-                        ? Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                                ScrollViewH(
-                                    images: resorts,
-                                    title: "الأماكن والرحلات المفضلة"),
-                                SizedBox(height: getSize(context).height * 0.02),
-                                Text("العروض التي سجلت إعجابك بها"),
-                                Expanded(
-                                  child: ListView.builder(
-                                      padding: EdgeInsets.all(10),
-                                      itemCount: 5,
-                                      itemBuilder: (context, index) {
-                                        return ResortOfferCard();
-                                      }),
-                                ),
-                              ])
-                        : Center(
-                            child: Text(
-                              "لا يوجد حجوزات",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                  ]),
-                ),
-              ]),
-            )
-          ],
-        ),
-      ),
-    );
+      });
   }
 }

@@ -24,44 +24,14 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Consumer<ResortsProvider>(
       builder: (context, resortsConsumer, child) {
-        return Scaffold(
-            backgroundColor: Colors.white,
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+        return SafeArea(
+          child: Scaffold(
+              backgroundColor: Colors.white,
+              body: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(children:[
                 TopImage(),
-                ScrollViewH(
-                  title: "الأعلى تقييماً",
-                  resorts: resortsConsumer.resorts,
-                ),
-                ScrollViewH(
-                  title: "مضافة حديثاً",
-                 resorts: resortsConsumer.resorts,
-                ),
-                Label(
-                  title: "أفضل العروض",
-                ),
-                Expanded(
-                  child: ListView.builder(
-                      padding: EdgeInsets.all(10),
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return ResortOfferCard();
-                      }),
-                ),
-              ],
-            ));
-      }
-=======
-    return SafeArea(
-      child: Scaffold(
-          backgroundColor: Colors.white,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(children:[
-                               TopImage(),
-      
                 CenterAppTitle(title: "البحث"),
                                         Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -77,28 +47,30 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                           ),
       
-                 ]),
-              ScrollViewH(
-                title: "الأعلى تقييماً",
-                images: resorts,
-              ),
-              ScrollViewH(
-                title: "مضافة حديثاً",
-                images: trips,
-              ),
-              Label(
-                title: "أفضل العروض",
-              ),
-              Expanded(
-                child: ListView.builder(
-                    padding: EdgeInsets.all(10),
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return ResortOfferCard();
-                    }),
-              ),
-            ],
-          )),
-    );
+                  ]),
+                  ScrollViewH(
+                    title: "الأعلى تقييماً",
+                    resorts: resortsConsumer.resorts,
+                  ),
+                  ScrollViewH(
+                    title: "مضافة حديثاً",
+                    resorts: resortsConsumer.resorts,
+                  ),
+                  Label(
+                    title: "أفضل العروض",
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        padding: EdgeInsets.all(10),
+                        itemCount: resortsConsumer.resorts.length,
+                        itemBuilder: (context, index) {
+                          return ResortOfferCard();
+                        }),
+                  ),
+                ],
+              )),
+        );
+      }
+    );    
   }
 }

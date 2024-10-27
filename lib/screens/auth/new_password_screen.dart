@@ -24,13 +24,13 @@ class NewPasswordScreen extends StatelessWidget {
         body: Column(
           children: [
       Stack(children:[
-                 TopImage(),
-               Padding(
+                  TopImage(),
+                Padding(
                     padding: const EdgeInsets.all(16),
-                     child: Row(
+                      child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [ 
-                     GestureDetector(
+                      GestureDetector(
                                 onTap: (){
                                 },
                                 child: CustomBackButton()
@@ -39,8 +39,8 @@ class NewPasswordScreen extends StatelessWidget {
                             ),
                           ),
       
-                 ]),          
-                 SizedBox(
+                  ]),          
+                  SizedBox(
               height: 40,
             ),
             Padding(
@@ -54,6 +54,11 @@ class NewPasswordScreen extends StatelessWidget {
                     height: 70,
                   ),
                   CustomeTextBox(
+                    validate: (value) {
+                      if (value!.isEmpty) {
+                        return 'الرجاء ادخال كلمة المرور';
+                      }
+                    },
                     hintText: "كلمة المرور ",
                     imagePath: "assets/icons/lock.png",
                     controller: lockController,
@@ -63,6 +68,14 @@ class NewPasswordScreen extends StatelessWidget {
                     height: 20,
                   ),
                   CustomeTextBox(
+                    validate: (value){
+                      if(value!.isEmpty){
+                        return 'الرجاء ادخال كلمة المرور';
+                      }
+                      if(value != lockController.text){
+                        return 'كلمة المرور غير متطابقة';
+                      }
+                    },
                     hintText: "تأكيد كلمة المرور",
                     imagePath: "assets/icons/lock.png",
                     controller: confirmLockController,

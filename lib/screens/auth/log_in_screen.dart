@@ -135,7 +135,7 @@ class LogInScreen extends StatelessWidget {
                           ),
                           VendorIcon(
                             path: "assets/icons/apple.png",
-
+                            onTap: (){
                               print('LOG IN WTH Appale');
 
                               print('pressed');
