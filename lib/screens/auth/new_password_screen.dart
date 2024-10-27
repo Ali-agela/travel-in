@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_in/screens/auth/log_in_screen.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/images/top_image.dart';
 import 'package:travel_in/widgets/texts/custome_text_box.dart';
@@ -30,6 +32,12 @@ class NewPasswordScreen extends StatelessWidget {
                   height: 70,
                 ),
                 CustomeTextBox(
+                  validate: (value){
+                    if(value!.isEmpty){
+                      return 'الرجاء ادخال كلمة المرور';
+                    }
+                    return null;
+                  },
                   hintText: "كلمة المرور ",
                   imagePath: "assets/icons/lock.png",
                   controller: lockController,
@@ -39,6 +47,12 @@ class NewPasswordScreen extends StatelessWidget {
                   height: 20,
                 ),
                 CustomeTextBox(
+                  validate: (value){
+                    if(value!.isEmpty){
+                      return 'الرجاء ادخال كلمة المرور';
+                    }
+                    return null;
+                  },
                   hintText: "تأكيد كلمة المرور",
                   imagePath: "assets/icons/lock.png",
                   controller: confirmLockController,
@@ -47,7 +61,10 @@ class NewPasswordScreen extends StatelessWidget {
                 SizedBox(
                   height: 50,
                 ),
-                BlueButton(onTap: () {}, buttonText: "تعيين")
+                BlueButton(onTap: () {
+                  print("RESET PASSWORD");
+                  Navigator.push(context,CupertinoPageRoute(builder: (context) => LogInScreen()));
+                }, buttonText: "تعيين")
               ],
             ),
           )

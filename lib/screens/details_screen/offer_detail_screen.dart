@@ -28,7 +28,7 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverCard(),
+          //SliverCard(),
           SliverList(
             delegate: SliverChildListDelegate([
               ScrollDivider(),

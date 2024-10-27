@@ -1,19 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_in/helper/size.dart';
+import 'package:travel_in/models/ResortModel.dart';
 import 'package:travel_in/widgets/card/home_card.dart';
 
 class ScrollViewH extends StatelessWidget {
   const ScrollViewH(
       {super.key,
-      required this.images,
+      required this.resorts,
       this.isResort = true,
       required this.title});
-  final List<String> images;
+  final List<ResortModel> resorts;
   final bool isResort;
   final String title;
   @override
   Widget build(BuildContext context) {
+    print("resorts.length ${resorts.length}");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -33,15 +35,14 @@ class ScrollViewH extends StatelessWidget {
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemCount: 3,
+              itemCount: resorts.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                   child: SizedBox(
                       width: getSize(context).width * 0.4,
                       child: HomeCard(
-                        imageName: images[index],
+                        resort: resorts[index],
                         isResort: isResort,
                       )),
                 );
