@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/provider/authentication_provider.dart';
 import 'package:travel_in/provider/base_provider.dart';
+import 'package:travel_in/provider/reservation_provider.dart';
+import 'package:travel_in/provider/resorts_offer_provider.dart';
 import 'package:travel_in/provider/dark_mode_provider.dart';
 import 'package:travel_in/provider/localization_provider.dart';
 import 'package:travel_in/provider/resorts_provider.dart';
@@ -25,7 +27,6 @@ import 'package:travel_in/screens/onboardings/onboarding3.dart';
 import 'package:travel_in/widgets/clickables/checkboxes.dart';
 import 'package:travel_in/widgets/dialogs/filter_dialog.dart';
 
-
 void main() {
   runApp(MainApp());
 }
@@ -35,10 +36,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    
-    MultiProvider(
+    return MultiProvider(
       providers: [
         ChangeNotifierProvider<BaseProvider>(create: (context) => BaseProvider()),
         ChangeNotifierProvider<AuthenticationProvider>(create:  (context) => AuthenticationProvider()), 
@@ -46,7 +44,11 @@ class MainApp extends StatelessWidget {
                 ChangeNotifierProvider<DarkModeProvider>(
             create: (context) => DarkModeProvider()..getMode()),
          ChangeNotifierProvider<LocalizationProvider>(
-            create: (context) => LocalizationProvider()..getLanguage())
+            create: (context) => LocalizationProvider()..getLanguage()),
+            ChangeNotifierProvider<ResortsOfferProvider>(
+            create: (context) => ResortsOfferProvider()),
+        ChangeNotifierProvider<ReservationProvider>(
+            create: (context) => ReservationProvider()),
 
       ],
       child: Consumer2<DarkModeProvider, LocalizationProvider>(
@@ -88,10 +90,10 @@ class MainApp extends StatelessWidget {
               home: Search());
         }
       ),
+
     );
 
-          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-          // useMaterial3: true,
-
+    // colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+    // useMaterial3: true,
   }
 }

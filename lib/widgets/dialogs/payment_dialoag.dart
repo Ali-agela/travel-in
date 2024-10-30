@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_in/helper/size.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
+import 'package:travel_in/widgets/dialogs/confirmation_dialog.dart';
+import 'package:travel_in/widgets/dialogs/succes_dialog.dart';
 
 class PaymentDialoag extends StatelessWidget {
   const PaymentDialoag({super.key});
@@ -52,7 +54,12 @@ class PaymentDialoag extends StatelessWidget {
               SizedBox(
                 height: 14,
               ),
-              BlueButton(onTap: () {}, buttonText: "نقدا لدى مكتب الحجز"),
+              BlueButton(
+                  onTap: () {
+                    showDialog(
+                        context: context, builder: (context) => ConfirmationDialog());
+                  },
+                  buttonText: "نقدا لدى مكتب الحجز"),
             ],
           ),
         ));

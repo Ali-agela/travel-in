@@ -15,13 +15,18 @@ class CustomBackButton extends StatefulWidget {
 class _BackButtonState extends State<CustomBackButton> {
   @override
   Widget build(BuildContext context) {
+
     return Consumer<DarkModeProvider>(
       builder: (context, darkModeConsumer, _) {
-        return Container(
-          decoration: BoxDecoration(
+        return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(
               shape: BoxShape.circle, color:    darkModeConsumer.isDark
                    ?lightgrey
-                   :whitegrey,
+                   :whitegrey
         ),
           child: Padding(
             padding: const EdgeInsets.all(10.0),

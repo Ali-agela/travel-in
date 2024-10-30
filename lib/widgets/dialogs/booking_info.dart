@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:travel_in/helper/size.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/buttons/counter_button.dart';
+import 'package:travel_in/widgets/dialogs/booking_dialog.dart';
+import 'package:travel_in/widgets/dialogs/payment_dialoag.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 
 class BookingInfo extends StatefulWidget {
@@ -125,11 +127,17 @@ class _BookingInfoState extends State<BookingInfo> {
             ),
             const SizedBox(height: 20),
             CounterButton(),
-            CounterButton(),
+            isFamily ? CounterButton(title: "عدد الأطفال") : const SizedBox(),
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20),
-              child: BlueButton(onTap: () {}, buttonText: "التالي"),
+              child: BlueButton(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => PaymentDialoag());
+                  },
+                  buttonText: "التالي"),
             ),
           ],
         ),

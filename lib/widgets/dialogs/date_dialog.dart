@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_in/helper/size.dart';
+import 'package:flutter_date_range_picker/flutter_date_range_picker.dart'
+    as DateRangePicker;
+import 'package:provider/provider.dart';
+import 'package:travel_in/provider/reservation_provider.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
+import 'package:travel_in/widgets/dialogs/booking_info.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 
 class DateDialog extends StatelessWidget {
-  const DateDialog({super.key});
+  DateDialog({super.key});
+  String? startDate;
+  String? endDate;
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +39,34 @@ class DateDialog extends StatelessWidget {
             ],
           ),
           //SizedBox(height: 20),
-          DatePickerDialog(
-            
-            firstDate: DateTime.now(),
-            lastDate: DateTime(2025),
-            initialDate: DateTime.now(),
-          ),
-          BlueButton(onTap: () {}, buttonText: "التالي"),
+          SizedBox(
+              height: 500,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DateRangePicker.DateRangePickerWidget(
+                  onDateRangeChanged: (value) {
+                    startDate = value!.start.toIso8601String().substring(0, 10);
+                    endDate = value.end.toIso8601String().substring(0, 10);
+                    print(startDate);
+                    print(endDate);
+                  },
+                ),
+              )),
+
+          BlueButton(
+              onTap: () {
+                if (startDate != null && endDate != null) {
+                  Provider.of<ReservationProvider>(context, listen: false)
+                      .reservationModel
+                      .startDate = startDate;
+                  Provider.of<ReservationProvider>(context, listen: false)
+                      .reservationModel
+                      .endDate = endDate;
+                  showDialog(
+                      context: context, builder: (context) => BookingInfo());
+                }
+              },
+              buttonText: "التالي"),
           SizedBox(height: 14),
         ],
       )),

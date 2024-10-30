@@ -68,14 +68,12 @@ class ResortModel {
 class Image {
   int id;
   String imageUrl;
-  int adminId;
   DateTime createdAt;
   DateTime updatedAt;
 
   Image({
     required this.id,
     required this.imageUrl,
-    required this.adminId,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -87,7 +85,6 @@ class Image {
   factory Image.fromJson(Map<String, dynamic> json) => Image(
         id: json["id"],
         imageUrl: json["image_url"],
-        adminId: json["admin_id"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
@@ -95,7 +92,6 @@ class Image {
   Map<String, dynamic> toJson() => {
         "id": id,
         "image_url": imageUrl,
-        "admin_id": adminId,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
