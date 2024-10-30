@@ -6,7 +6,7 @@ import 'package:travel_in/provider/base_provider.dart';
 
 class ResortsProvider extends BaseProvider {
   List<ResortModel> resorts = [];
-  List<ResortOfferModel> offers=[];
+  List<ResortModel> soon =[];
   Future<void> getResorts() async {
     print("Start");
     setLoading(true);
@@ -26,21 +26,40 @@ class ResortsProvider extends BaseProvider {
     }
     setLoading(false);
   }
-  Future<void> getOffers(int id) async {
+  // Future<void> getOffers(int id) async {
+  //   print("Start");
+  //   setLoading(true);
+  //   var res =
+  //       await api.get('https://lizard-well-boar.ngrok-free.app/api/resorts/$id');
+  //   if (res.statusCode == 200) {
+  //     var data = jsonDecode(res.body)['data'];
+  //     print(res.body);
+
+  //     offers =
+  //         List<ResortOfferModel>.from(data.map((e) => ResortOfferModel.fromJson(e)));
+  //     setLoading(false);
+  //     print('offers fetched successfully ${offers.length}');
+  //   } else {
+  //     print('error while fetching offers');
+  //     setFailed(true);
+  //   }
+  //   setLoading(false);
+  // }
+  Future<void> getSoon() async {
     print("Start");
     setLoading(true);
     var res =
-        await api.get('https://lizard-well-boar.ngrok-free.app/api/resorts/$id');
+        await api.get('https://lizard-well-boar.ngrok-free.app/api/resorts');
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body)['data'];
       print(res.body);
 
-      offers =
-          List<ResortOfferModel>.from(data.map((e) => ResortOfferModel.fromJson(e)));
+      soon =
+          List<ResortModel>.from(data.map((e) => ResortModel.fromJson(e)));
       setLoading(false);
-      print('offers fetched successfully ${offers.length}');
+      print('soon fetched successfully ${soon.length}');
     } else {
-      print('error while fetching offers');
+      print('error while fetching soon');
       setFailed(true);
     }
     setLoading(false);

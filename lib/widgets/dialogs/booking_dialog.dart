@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_in/helper/size.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
+import 'package:travel_in/widgets/dialogs/date_dialog.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 
 class BookingDialog extends StatelessWidget {
@@ -60,7 +61,8 @@ class BookingDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: BlueButton(onTap: () {
-                
+                showDialog(
+                    context: context, builder: (context) => DateDialog());
               }, buttonText: "تأكيد الحجز"),
             ),
           ],

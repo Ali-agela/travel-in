@@ -48,7 +48,9 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  ResortOfferCard(),
+                  // ResortOfferCard(
+
+                  // ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

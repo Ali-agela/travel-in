@@ -5,10 +5,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_in/provider/authentication_provider.dart';
 import 'package:travel_in/provider/base_provider.dart';
+import 'package:travel_in/provider/reservation_provider.dart';
+import 'package:travel_in/provider/resorts_offer_provider.dart';
 import 'package:travel_in/provider/resorts_provider.dart';
 
 import 'package:travel_in/screens/auth/log_in_screen.dart';
-
 
 void main() {
   runApp(MainApp());
@@ -19,17 +20,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    
-    MultiProvider(
+    return MultiProvider(
       providers: [
-        ChangeNotifierProvider<BaseProvider>(create: (context) => BaseProvider()),
-        ChangeNotifierProvider<AuthenticationProvider>(create:  (context) => AuthenticationProvider()), 
-        ChangeNotifierProvider<ResortsProvider>(create:(context)=> ResortsProvider()..getResorts()), 
+        ChangeNotifierProvider<BaseProvider>(
+            create: (context) => BaseProvider()),
+        ChangeNotifierProvider<AuthenticationProvider>(
+            create: (context) => AuthenticationProvider()),
+        ChangeNotifierProvider<ResortsProvider>(
+            create: (context) => ResortsProvider()..getResorts()),
+        ChangeNotifierProvider<ResortsOfferProvider>(
+            create: (context) => ResortsOfferProvider()),
+        ChangeNotifierProvider<ReservationProvider>(
+            create: (context) => ReservationProvider()),
       ],
       child: MaterialApp(
-        
           debugShowCheckedModeBanner: false,
           locale: Locale("ar"),
           localizationsDelegates: const [
@@ -48,16 +52,14 @@ class MainApp extends StatelessWidget {
             tabBarTheme: TabBarTheme(
               overlayColor: WidgetStatePropertyAll(Colors.transparent),
             ),
-      
+
             // colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
             // useMaterial3: true,
           ),
-
           home: LogInScreen()),
     );
 
-          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-          // useMaterial3: true,
-
+    // colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+    // useMaterial3: true,
   }
 }

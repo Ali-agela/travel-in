@@ -1,16 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_in/helper/size.dart';
+import 'package:travel_in/models/ResortOfferModel.dart' as offerModel;
 import 'package:travel_in/screens/details_screen/offer_detail_screen.dart';
 import 'package:travel_in/widgets/rating/ratings.dart';
 
 class ResortOfferCard extends StatelessWidget {
-  const ResortOfferCard({super.key, });
+  const ResortOfferCard({
+    super.key,
+    required this.resortOfferModel,
+  });
+  final offerModel.ResortOfferModel resortOfferModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, CupertinoPageRoute(builder: (context)=>OfferDetailScreen()));
+        Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (context) => OfferDetailScreen(
+                      offer: resortOfferModel,
+                    )));
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
@@ -33,12 +43,12 @@ class ResortOfferCard extends StatelessWidget {
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/pics/resort1.png',
+                    child: Image.network(
+                      'https://lizard-well-boar.ngrok-free.app/storage/${resortOfferModel.images.first.imageUrl}',
                       width: getSize(context).width * 0.23,
                     )),
                 SizedBox(width: 10),
-                  Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Center(
                     child: Column(
@@ -47,7 +57,7 @@ class ResortOfferCard extends StatelessWidget {
                       children: [
                         SizedBox(height: 10),
                         Text(
-                          'فيلا',
+                          resortOfferModel.name,  
                           style: TextStyle(
                             color: Color(0xFF1B1E28),
                             fontSize: 14,
@@ -59,8 +69,8 @@ class ResortOfferCard extends StatelessWidget {
                         ),
                         SizedBox(height: 5),
                         Ratings(rate: 5),
-                        Text("8 اشخاص"),
-                        Text("800 د.ل/اليوم"),
+                        Text(resortOfferModel.numberOfPoeple),
+                        Text("${resortOfferModel.pricePerRoom} د.ل/اليوم"),
                       ],
                     ),
                   ),

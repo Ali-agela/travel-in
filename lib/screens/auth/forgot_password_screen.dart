@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_in/screens/auth/new_password_screen.dart';
 import 'package:travel_in/widgets/buttons/back_button.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/images/top_image.dart';
@@ -29,22 +30,18 @@ class ForgotPasswordScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Stack(children:[
+              Stack(children: [
                 TopImage(),
-               Padding(
-                    padding: const EdgeInsets.all(16),
-                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [ 
-                     GestureDetector(
-                                onTap: (){
-                                },
-                                child: const CustomBackButton()
-                              ),
-                              ],
-                            ),
-                          ),
-      
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                          onTap: () {}, child: const CustomBackButton()),
+                    ],
+                  ),
+                ),
               ]),
               Padding(
                 padding: const EdgeInsets.all(30.0),
@@ -64,7 +61,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-          
+
                     // TODO add the otp text fields
                     PinField(),
                     SizedBox(
@@ -72,7 +69,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                     BlueButton(
                         onTap: () {
-                          //validation ?
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NewPasswordScreen()));
                         },
                         buttonText: "تأكيد")
                   ],

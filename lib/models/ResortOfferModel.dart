@@ -1,16 +1,20 @@
 import 'dart:convert';
+import 'package:travel_in/models/ResortModel.dart' as resort_model;
 
 class ResortOfferModel {
-  int id;
-  String name;
-  String location;
-  String description;
-  int adminId;
-  DateTime createdAt;
-  DateTime updatedAt;
-  List<Image> images;
-  List<Spasification> spasifications;
-  List<Reservation> reservations;
+  final int id;
+  final String name;
+  final String location;
+  final String description;
+  final int adminId;
+  final String numberOfRooms;
+  final String pricePerRoom;
+  final String numberOfPoeple;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final List<resort_model.Image> images;
+  final List<Spasification> spasifications;
+  final List<Reservation> reservations;
 
   ResortOfferModel({
     required this.id,
@@ -18,6 +22,9 @@ class ResortOfferModel {
     required this.location,
     required this.description,
     required this.adminId,
+    required this.numberOfRooms,
+    required this.pricePerRoom,
+    required this.numberOfPoeple,
     required this.createdAt,
     required this.updatedAt,
     required this.images,
@@ -37,9 +44,13 @@ class ResortOfferModel {
         location: json["location"],
         description: json["description"],
         adminId: json["admin_id"],
+        numberOfRooms: json["number_of_rooms"],
+        pricePerRoom: json["price_per_room"],
+        numberOfPoeple: json["number_of_poeple"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
+        images: List<resort_model.Image>.from(
+            json["images"].map((x) => resort_model.Image.fromJson(x))),
         spasifications: List<Spasification>.from(
             json["spasifications"].map((x) => Spasification.fromJson(x))),
         reservations: List<Reservation>.from(
@@ -52,6 +63,9 @@ class ResortOfferModel {
         "location": location,
         "description": description,
         "admin_id": adminId,
+        "number_of_rooms": numberOfRooms,
+        "price_per_room": pricePerRoom,
+        "number_of_poeple": numberOfPoeple,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "images": List<dynamic>.from(images.map((x) => x.toJson())),
@@ -61,56 +75,22 @@ class ResortOfferModel {
       };
 }
 
-class Image {
-  int id;
-  String imageUrl;
-  int resortId;
-  DateTime createdAt;
-  DateTime updatedAt;
-
-  Image({
-    required this.id,
-    required this.imageUrl,
-    required this.resortId,
-    required this.createdAt,
-    required this.updatedAt,
-  });
-
-  factory Image.fromRawJson(String str) => Image.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
-        id: json["id"],
-        imageUrl: json["image_url"],
-        resortId: json["resort_id"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "image_url": imageUrl,
-        "resort_id": resortId,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-      };
-}
-
 class Reservation {
-  int id;
-  int resortId;
-  int userId;
-  DateTime date;
-  String status;
-  DateTime createdAt;
-  DateTime updatedAt;
+  final int id;
+  final int userId;
+  final int resortId;
+  final DateTime startDate;
+  final DateTime endDate;
+  final String status;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   Reservation({
     required this.id,
-    required this.resortId,
     required this.userId,
-    required this.date,
+    required this.resortId,
+    required this.startDate,
+    required this.endDate,
     required this.status,
     required this.createdAt,
     required this.updatedAt,
@@ -123,9 +103,10 @@ class Reservation {
 
   factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
         id: json["id"],
-        resortId: json["resort_id"],
         userId: json["user_id"],
-        date: DateTime.parse(json["date"]),
+        resortId: json["resort_id"],
+        startDate: DateTime.parse(json["start_date"]),
+        endDate: DateTime.parse(json["end_date"]),
         status: json["status"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
@@ -133,10 +114,12 @@ class Reservation {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "resort_id": resortId,
         "user_id": userId,
-        "date":
-            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "resort_id": resortId,
+        "start_date":
+            "${startDate.year.toString().padLeft(4, '0')}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}",
+        "end_date":
+            "${endDate.year.toString().padLeft(4, '0')}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}",
         "status": status,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
@@ -144,12 +127,12 @@ class Reservation {
 }
 
 class Spasification {
-  int id;
-  String spasification;
-  int resortId;
-  dynamic rating;
-  DateTime createdAt;
-  DateTime updatedAt;
+  final int id;
+  final String spasification;
+  final int resortId;
+  final dynamic rating;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   Spasification({
     required this.id,

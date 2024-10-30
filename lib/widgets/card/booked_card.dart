@@ -1,17 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_in/helper/size.dart';
+import 'package:travel_in/models/reseved_resort_model.dart';
 import 'package:travel_in/screens/details_screen/booking_details_screen.dart';
 import 'package:travel_in/widgets/texts/text_with_icon.dart';
 
 class BookedCard extends StatelessWidget {
-  const BookedCard({super.key});
-
+  const BookedCard({super.key, required this.resevedResorsModel});
+  final ResevedResorsModel resevedResorsModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingDetailsScreen()));
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BookingDetailsScreen()));
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -31,8 +33,8 @@ class BookedCard extends StatelessWidget {
             children: [
               ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    "assets/pics/resort1.png",
+                  child: Image.network(
+                    "https://lizard-well-boar.ngrok-free.app/storage/${resevedResorsModel.imageUrl}",
                     height: getSize(context).height * 0.16,
                     width: getSize(context).height * 0.14,
                     fit: BoxFit.cover,
@@ -40,22 +42,34 @@ class BookedCard extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              const Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("النخلة الذهبية - فيلا"),
-                  TextWithIcon(
-                    text: 'بنغازي',
-                    icon: 'assets/icons/loaction.png',
+                  Text(
+                    resevedResorsModel.resort,
+                    style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                   TextWithIcon(
-                    text: 'بنغازي',
-                    icon: 'assets/icons/loaction.png',
+                    text: resevedResorsModel.resortLocation,
+                    icon: Icon(Icons.location_on),
                   ),
                   TextWithIcon(
-                    text: 'بنغازي',
-                    icon: 'assets/icons/loaction.png',
+                    text: resevedResorsModel.startDate
+                        .toString()
+                        .substring(0, 10),
+                    icon: Icon(Icons.calendar_today),
+                  ),
+                  TextWithIcon(
+                    text: resevedResorsModel.resevationStatus == "pending"
+                        ? "حجز غير مؤكد"
+                        : "حجز مؤكد",
+                    icon: resevedResorsModel.resevationStatus == "pending"
+                        ? Icon(Icons.pending_actions)
+                        : Icon(Icons.done),
                   ),
                 ],
               ),

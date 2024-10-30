@@ -24,6 +24,7 @@ class Api {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString('token') ?? '';
     print("Token is $token");
+    print(jsonEncode(body));
 
     return await http.post(Uri.parse(url), body: jsonEncode(body), headers: {
       'Content-Type': 'application/json',

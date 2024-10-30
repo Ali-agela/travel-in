@@ -59,14 +59,16 @@ class _SearchScreenState extends State<SearchScreen> {
                   Label(
                     title: "أفضل العروض",
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                        padding: EdgeInsets.all(10),
-                        itemCount: resortsConsumer.resorts.length,
-                        itemBuilder: (context, index) {
-                          return ResortOfferCard();
-                        }),
-                  ),
+                  // Expanded(
+                  //   child: ListView.builder(
+                  //       padding: EdgeInsets.all(10),
+                  //       itemCount: resortsConsumer.resorts.length,
+                  //       itemBuilder: (context, index) {
+                  //         return ResortOfferCard(
+
+                  //         );
+                  //       }),
+                  // ),
                 ],
               )),
         );

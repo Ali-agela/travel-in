@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/screens/main_screens/booking_screen.dart';
+import 'package:travel_in/screens/main_screens/explore_screen.dart';
 import 'package:travel_in/screens/main_screens/home_screen.dart';
 import 'package:travel_in/screens/main_screens/profile/profile_screen.dart';
 import 'package:travel_in/screens/main_screens/search_screen.dart';
@@ -26,45 +28,38 @@ class _MainNavigatorState extends State<MainNavigator> {
               });
             },
             selectedItemColor: Colors.blue,
+            selectedFontSize: 10,
+            unselectedFontSize: 0,
             items: [
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icons/profile.png',
-                  height: 24,
-                  width: 24,
+                icon: Icon(
+                  Icons.account_circle,
+                  color: nowIndex == 0 ? blue1 : greytxt,
                 ),
                 label: 'حسابي',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icons/booked.png',
-                  height: 24,
-                  width: 24,
+                icon: Icon(
+                  Icons.calendar_month,
+                  color: nowIndex == 1 ? blue1 : greytxt,
                 ),
                 label: 'حجوزات',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icons/home.png',
-                  height: 24,
-                  width: 24,
+                icon: Icon(
+                  Icons.home,
+                  color: nowIndex == 2 ? blue1 : greytxt,
                 ),
                 label: 'الرئيسية',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icons/search.png',
-                  height: 24,
-                  width: 24,
-                ),
+                icon:
+                    Icon(Icons.search, color: nowIndex == 3 ? blue1 : greytxt),
                 label: 'بحث',
               ),
               BottomNavigationBarItem(
-                icon: Image.asset(
-                  'assets/icons/explore.png',
-                  height: 24,
-                  width: 24,
-                ),
+                icon:
+                    Icon(Icons.explore, color: nowIndex == 4 ? blue1 : greytxt),
                 label: 'اكتشف',
               ),
             ]),
@@ -78,9 +73,7 @@ class _MainNavigatorState extends State<MainNavigator> {
                   : nowIndex == 3
                       ? SearchScreen()
                       : nowIndex == 4
-                          ? Center(
-                              child: Text("Explore Screen"),
-                            )
+                          ? ExploreScreen()
                           : Container(),
     );
   }

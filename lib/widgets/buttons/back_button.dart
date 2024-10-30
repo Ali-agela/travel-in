@@ -13,15 +13,19 @@ class CustomBackButton extends StatefulWidget {
 class _BackButtonState extends State<CustomBackButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          shape: BoxShape.circle, color: whitegrey),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Image.asset(
-          'assets/icons/arrow_icon.png',
-          width: 32,
-          height: 32,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(shape: BoxShape.circle, color: whitegrey),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Image.asset(
+            'assets/icons/arrow_icon.png',
+            width: 32,
+            height: 32,
+          ),
         ),
       ),
     );
