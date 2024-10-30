@@ -13,19 +13,8 @@ import 'package:travel_in/provider/resorts_offer_provider.dart';
 import 'package:travel_in/provider/dark_mode_provider.dart';
 import 'package:travel_in/provider/localization_provider.dart';
 import 'package:travel_in/provider/resorts_provider.dart';
-import 'package:travel_in/screens/auth/forgot_password_screen.dart';
 
 import 'package:travel_in/screens/auth/log_in_screen.dart';
-import 'package:travel_in/screens/auth/new_password_screen.dart';
-import 'package:travel_in/screens/auth/sign_up_screen.dart';
-import 'package:travel_in/screens/main_screens/home_screen.dart';
-import 'package:travel_in/screens/main_screens/profile/profile_screen.dart';
-import 'package:travel_in/screens/main_screens/search_screen.dart';
-import 'package:travel_in/screens/onboardings/onboarding1.dart';
-import 'package:travel_in/screens/onboardings/onboarding2.dart';
-import 'package:travel_in/screens/onboardings/onboarding3.dart';
-import 'package:travel_in/widgets/clickables/checkboxes.dart';
-import 'package:travel_in/widgets/dialogs/filter_dialog.dart';
 
 void main() {
   runApp(MainApp());
@@ -87,7 +76,7 @@ class MainApp extends StatelessWidget {
                 // colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
                 // useMaterial3: true,
           
-              home: Search());
+              home: LogInScreen());
         }
       ),
 
