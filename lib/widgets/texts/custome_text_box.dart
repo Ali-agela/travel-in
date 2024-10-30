@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:travel_in/helper/constant.dart';
+import 'package:travel_in/provider/dark_mode_provider.dart';
 
 class CustomeTextBox extends StatefulWidget {
   const CustomeTextBox(
@@ -25,34 +27,43 @@ class CustomeTextBox extends StatefulWidget {
 class _CustomeTextBoxState extends State<CustomeTextBox> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      validator: widget.validate,
-      obscureText: widget.isPassword,
-      controller: widget.controller,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(vertical: 17),
-        filled: true,
-        fillColor: Color(0xfff3f4f6),
-        suffixIcon: widget.preFexIcon,
-        prefixIcon: Padding(
-          padding: EdgeInsets.only(left: 24, right: 17),
-          child: Image.asset(
-            widget.imagePath,
-            width: 24,
-            height: 24,
+    return Consumer<DarkModeProvider>(
+      builder: (context, darkModeConsumer, _) {
+        return TextFormField(
+          validator: widget.validate,
+          obscureText: widget.isPassword,
+          controller: widget.controller,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 17),
+            filled: true,
+            fillColor:     darkModeConsumer.isDark
+               ?greycolor
+               :greybox,
+            suffixIcon: widget.preFexIcon,
+            prefixIcon: Padding(
+              padding: EdgeInsets.only(left: 24, right: 17),
+              child: Image.asset(
+                widget.imagePath,
+                width: 24,
+                height: 24,
+              ),
+            ),
+            hintText: widget.hintText,
+            hintTextDirection: TextDirection.rtl,
+            hintStyle: GoogleFonts.cairo(
+              color:      darkModeConsumer.isDark
+               ?lightgrey
+               :darktxtcolor,
+
+              fontSize: 16,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide.none,
+            ),
           ),
-        ),
-        hintText: widget.hintText,
-        hintTextDirection: TextDirection.rtl,
-        hintStyle: GoogleFonts.cairo(
-          color: greytxt,
-          fontSize: 16,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide.none,
-        ),
-      ),
+        );
+      }
     );
   }
 }

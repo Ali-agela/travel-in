@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:travel_in/screens/auth/log_in_screen.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:travel_in/widgets/buttons/back_button.dart';
-
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/images/top_image.dart';
 import 'package:travel_in/widgets/texts/custome_text_box.dart';
@@ -20,7 +19,6 @@ class NewPasswordScreen extends StatelessWidget {
  
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Column(
           children: [
       Stack(children:[
@@ -48,18 +46,18 @@ class NewPasswordScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Label(
-                      title: "إنشاء كلمة السر",
-                      subTitle: "قم بتعيين كلمة السر الجديدة لحسابك"),
+                      title: AppLocalizations.of(context)!.createpassword,
+                      subTitle: AppLocalizations.of(context)!.createnewpassword),
                   SizedBox(
                     height: 70,
                   ),
                   CustomeTextBox(
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return 'الرجاء ادخال كلمة المرور';
+                        return AppLocalizations.of(context)!.pleaseenterpassword;
                       }
                     },
-                    hintText: "كلمة المرور ",
+                    hintText: AppLocalizations.of(context)!.password,
                     imagePath: "assets/icons/lock.png",
                     controller: lockController,
                     preFexIcon: Image.asset("assets/icons/open_eye.png"),
@@ -70,13 +68,13 @@ class NewPasswordScreen extends StatelessWidget {
                   CustomeTextBox(
                     validate: (value){
                       if(value!.isEmpty){
-                        return 'الرجاء ادخال كلمة المرور';
+                        return AppLocalizations.of(context)!.pleaseenterpassword;
                       }
                       if(value != lockController.text){
-                        return 'كلمة المرور غير متطابقة';
+                        return AppLocalizations.of(context)!.invalidpassword;
                       }
                     },
-                    hintText: "تأكيد كلمة المرور",
+                    hintText: AppLocalizations.of(context)!.confirmpassword,
                     imagePath: "assets/icons/lock.png",
                     controller: confirmLockController,
                     preFexIcon: Image.asset("assets/icons/open_eye.png"),
@@ -84,7 +82,7 @@ class NewPasswordScreen extends StatelessWidget {
                   SizedBox(
                     height: 50,
                   ),
-                  BlueButton(onTap: () {}, buttonText: "تعيين")
+                  BlueButton(onTap: () {}, buttonText: AppLocalizations.of(context)!.verify)
                 ],
               ),
             )

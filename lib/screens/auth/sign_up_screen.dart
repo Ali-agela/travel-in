@@ -13,6 +13,9 @@ import 'package:travel_in/widgets/dividers/or_divider.dart';
 import 'package:travel_in/widgets/images/top_image.dart';
 import 'package:travel_in/widgets/texts/custome_text_box.dart';
 import 'package:travel_in/widgets/texts/label.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -26,7 +29,6 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Center(
           child: SingleChildScrollView(
             child: Form(
@@ -45,78 +47,87 @@ class SignUpScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                           Padding(
+                             padding: const EdgeInsets.fromLTRB(16, 64, 16, 24),
+                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                               children: [
+                                 Label(
+                                  title: AppLocalizations.of(context)!.startjourney,
+                                  subTitle: AppLocalizations.of(context)!.fillinthefollowinginformation),
+                               ],
+                             ),
+                           ),
+                  
+
                   ]),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40.0),
                     child: Column(
                       children: [
-                        Label(
-                            title: "لنبدأ الرحلة ",
-                            subTitle: "قم بتعبئة البيانات الأتية "),
-                        SizedBox(height: 20),
                         CustomeTextBox(
                             validate: (value) {
                               if (value!.isEmpty) {
-                                return 'الرجاء ادخال الاسم';
+                                return AppLocalizations.of(context)!.pleaseentername;
                               }
                               return null;
                             },
-                            hintText: "الاسم",
+                            hintText: AppLocalizations.of(context)!.name,
                             imagePath: "assets/icons/person.png",
                             controller: nameController),
                         SizedBox(
-                          height: 20,
+                          height: 16,
                         ),
                         CustomeTextBox(
                             validate: (value) {
                               if (value!.isEmpty) {
-                                return 'الرجاء ادخال رقم الهاتف';
+                                return AppLocalizations.of(context)!.pleaseenterphone;
                               }
                               if (value.length != 10) {
-                                return 'الرجاء ادخال رقم هاتف صحيح';
+                                return AppLocalizations.of(context)!.pleaseentervalidphone;
                               }
                               return null;
                             },
-                            hintText: "رقم الهاتف",
+                            hintText: AppLocalizations.of(context)!.phonenumber,
                             imagePath: "assets/icons/phone.png",
                             controller: phoneController),
                         SizedBox(
-                          height: 20,
+                          height: 16,
                         ),
                         CustomeTextBox(
                             validate: (value) {
                               if (value!.isEmpty) {
-                                return 'الرجاء ادخال البريد الالكتروني';
+                                return AppLocalizations.of(context)!.pleaseenteremail;
                               }
                               if (!value.contains('@')) {
-                                return 'الرجاء ادخال بريد الكتروني صحيح';
+                                return AppLocalizations.of(context)!.pleaseentervalidemail;
                               }
                               return null;
                             },
-                            hintText: "البريد الالكتروني ",
+                            hintText: AppLocalizations.of(context)!.email,
                             imagePath: "assets/icons/email.png",
                             controller: emailController),
                         SizedBox(
-                          height: 20,
+                          height: 16,
                         ),
                         CustomeTextBox(
                           validate: (value) {
                             if (value!.isEmpty) {
-                              return 'الرجاء ادخال كلمة المرور';
+                              return AppLocalizations.of(context)!.pleaseenterpassword;
                             }
                             if (value.length < 8) {
-                              return 'كلمة المرور يجب ان تكون اكثر من 6 احرف';
+                              return AppLocalizations.of(context)!.pleaseentervalidpassword;
                             }
                             return null;
                           },
-                          hintText: "كلمة المرور",
+                          hintText: AppLocalizations.of(context)!.password,
                           imagePath: "assets/icons/lock.png",
                           controller: passwordController,
                           isPassword: true,
                           preFexIcon: Image.asset("assets/icons/open_eye.png"),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 24,
                         ),
                         BlueButton(
                           onTap: () {
@@ -139,14 +150,14 @@ class SignUpScreen extends StatelessWidget {
                               print('done');
                             }
                           },
-                          buttonText: "إنشاء حساب",
+                          buttonText: AppLocalizations.of(context)!.createanaccount,
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 16,
                         ),
                         OrDivider(),
                         SizedBox(
-                          height: 20,
+                          height: 24,
                         ),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -171,13 +182,13 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ]),
                         SizedBox(
-                          height: 40,
+                          height: 16,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'ليس لديك حساب؟',
+                              AppLocalizations.of(context)!.haveaccount,
                               textDirection: TextDirection.ltr,
                               style: GoogleFonts.cairo(
                                 color: greytxt,
@@ -193,7 +204,7 @@ class SignUpScreen extends StatelessWidget {
                                         builder: (builder) => LogInScreen()));
                               },
                               child: Text(
-                                'إنشاء حساب',
+                                AppLocalizations.of(context)!.login,
                                 textDirection: TextDirection.ltr,
                                 style: GoogleFonts.cairo(
                                   color: blue1,

@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_in/widgets/buttons/whiteButton.dart';
 import 'package:travel_in/widgets/onboardings/dots_indecaters.dart';
 import 'package:travel_in/widgets/onboardings/onboarding.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnBoarding3 extends StatelessWidget {
   const OnBoarding3({super.key});
@@ -15,14 +17,14 @@ class OnBoarding3 extends StatelessWidget {
         imageName: 'onboarding3.png',
         child: Column(
           children: [
-            Text('حجز سهل وسريع وآمن',
+            Text(AppLocalizations.of(context)!.easyfastandsecurebooking,
                 style: GoogleFonts.cairo(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 )),
             Text(
-                "تصفح كافة التفاصيل واختر ما يناسب احتياجاتك كل هذا وأكثر بضغطة زر واحدة!",
+                AppLocalizations.of(context)!.endlessoptions,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.cairo(
                   color: Colors.white,
@@ -38,7 +40,7 @@ class OnBoarding3 extends StatelessWidget {
                   onTap: () {
                     print('pressed');
                   },
-                  buttonText: 'تسجيل الدخول'),
+                  buttonText: AppLocalizations.of(context)!.login),
             ),
             SizedBox(height: 12),
             Padding(
@@ -47,7 +49,7 @@ class OnBoarding3 extends StatelessWidget {
                   onTap: () {
                     print('pressed');
                   },
-                  buttonText: 'إنشاء حساب'),
+                  buttonText:AppLocalizations.of(context)!.createanaccount),
             )
           ],
         ));
