@@ -26,6 +26,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   // @override
   // void initState(){
+  //   // Provider.of<TasksProvider>(context, listen: false).getTasks();//
+  //   // Provider.of<DarkModeProvider>(context, listen: false).getMode();//
   //   super.initState();
   // }
   
@@ -132,9 +134,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ? AppLocalizations.of(context)!.lightmode
                     : AppLocalizations.of(context)!.darkmode, 
                     onTab: () {
-                    //  Provider.of<DarkModeProvider>(context,
-                    //   listen: false)
-                    //  .switchMode();
+                     Provider.of<DarkModeProvider>(context,
+                      listen: false)
+                     .switchMode();
                     },
                       asset: darkModeConsumer.isDark
                       ? "assets/icons/mode_icon.png"

@@ -21,73 +21,75 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Consumer<ResortsProvider>(
-      builder: (context, resortsConsumer, child) {
-        return SafeArea(
-          child: Scaffold(
-              backgroundColor: Colors.white,
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(children:[
-                TopImage(),
-                CenterAppTitle(title: "البحث"),
-                                        Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [ 
-                              GestureDetector(
-                                onTap: (){
-                                },
-                                child: CustomBackButton()
-                              ),
-                              ],
-                            ),
-                          ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 108, 16, 0),
-                        child: Row(
-                          children: [
-                            TextFilterRow(subtitle: "فلترة النتائج", onTap: (){
-                              Navigator.pushAndRemoveUntil(
-                            context,
-                            CupertinoPageRoute(
-                                builder: (context) => FilterDialog()),
-                            (route) => false);
-                            },),
-                            SizedBox(width: 220,),
-                            TextFilterRow(subtitle: "الكل", onTap: (){},),
-                          ],
+        builder: (context, resortsConsumer, child) {
+      return SafeArea(
+        child: Scaffold(
+            backgroundColor: Colors.white,
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(children: [
+                  TopImage(),
+                  CenterAppTitle(title: "البحث"),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                            onTap: () {}, child: CustomBackButton()),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 108, 16, 0),
+                    child: Row(
+                      children: [
+                        TextFilterRow(
+                          subtitle: "فلترة النتائج",
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (builder) => FilterDialog());
+                          },
                         ),
-                      )
-                  ]),
-                  ScrollViewH(
-                    title: "الأعلى تقييماً",
-                    resorts: resortsConsumer.resorts,
-                  ),
-                  ScrollViewH(
-                    title: "مضافة حديثاً",
-                    resorts: resortsConsumer.resorts,
-                  ),
-                  Label(
-                    title: "أفضل العروض",
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                        padding: EdgeInsets.all(10),
-                        itemCount: resortsConsumer.resorts.length,
-                        itemBuilder: (context, index) {
-                          return ResortOfferCard();
-                        }),
-                  ),
-                ],
-              )),
-        );
-      }
-    );    
+                        SizedBox(
+                          width: 220,
+                        ),
+                        TextFilterRow(
+                          subtitle: "الكل",
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  )
+                ]),
+                ScrollViewH(
+                  title: "الأعلى تقييماً",
+                  resorts: resortsConsumer.resorts,
+                ),
+                ScrollViewH(
+                  title: "مضافة حديثاً",
+                  resorts: resortsConsumer.resorts,
+                ),
+                Label(
+                  title: "أفضل العروض",
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      padding: EdgeInsets.all(10),
+                      itemCount: resortsConsumer.resorts.length,
+                      itemBuilder: (context, index) {
+                        return ResortOfferCard();
+                      }),
+                ),
+              ],
+            )),
+      );
+    });
   }
 }
