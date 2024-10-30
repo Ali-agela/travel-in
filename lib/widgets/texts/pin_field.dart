@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:travel_in/helper/constant.dart';
 
 class PinField extends StatefulWidget {
   const PinField({super.key});
@@ -23,20 +24,19 @@ class _PinFieldState extends State<PinField> {
             cursorHeight: 16,
             enableActiveFill: true,
             keyboardType: TextInputType.number,
-            textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+            textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: darkblue),
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             pinTheme: PinTheme(
               shape: PinCodeFieldShape.box,
               fieldWidth: 48,
               inactiveColor: Colors.grey,
               selectedColor: Colors.black,
-              activeColor: Colors.grey,
-              activeFillColor: Colors.grey,
+              activeColor: greytxt.withOpacity(0.5),
+              activeFillColor: greytxt.withOpacity(0.5),
               selectedFillColor: Colors.white,
               inactiveFillColor: Colors.white,
               borderWidth: 1.5,
               borderRadius: BorderRadius.circular(8),
-
             ),
             onChanged: ((value){
               //Validation! 

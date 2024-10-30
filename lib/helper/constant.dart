@@ -20,6 +20,9 @@ const Color txtcolor = Color(0xFF464646);
 const Color darktxtcolor = Color(0xFF2F2F2F);
 const Color dividercolor = Color(0xFF5E5E5E);
 
+const Color greycolor = Color(0xFF5E5E5E);
+const Color darkcolor = Color(0xFF181818);
+const Color greybox = Color(0xFFF3F4F6);
 
 
 

@@ -5,6 +5,9 @@ import 'package:travel_in/screens/onboardings/onboarding2.dart';
 import 'package:travel_in/widgets/buttons/whiteButton.dart';
 import 'package:travel_in/widgets/onboardings/dots_indecaters.dart';
 import 'package:travel_in/widgets/onboardings/onboarding.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class Onboarding1 extends StatelessWidget {
   const Onboarding1({super.key});
@@ -16,23 +19,24 @@ class Onboarding1 extends StatelessWidget {
         child: Column(
           children: [
             Text.rich(TextSpan(children: [
+             
               TextSpan(
-                  text: 'Travelin',
-                  style: GoogleFonts.cairo(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  )),
-              TextSpan(
-                  text: 'ابدأ التخطيط لرحلتك القادمة مع',
+                  text: AppLocalizations.of(context)!.planyournexttripwithtravelin,
                   style: GoogleFonts.cairo(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   )),
+                   TextSpan(
+                  text: ' Travel in',
+                  style: GoogleFonts.cairo(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  )),
             ])),
             Text(
-                'اختر من بين مجموعة واسعة من المنتجعات والمصائف المميزة في ليبيا واستمتع بتجربة  لا تنسى',
+                AppLocalizations.of(context)!.choosefromawiderangeofresortsanddestinationsinlibya,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.cairo(
                   color: Colors.white,
@@ -48,7 +52,7 @@ class Onboarding1 extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context, CupertinoPageRoute(builder: (builder)=>OnBoarding2()));
                   },
-                  buttonText: 'التالي'),
+                  buttonText: AppLocalizations.of(context)!.next),
             )
           ],
         ));

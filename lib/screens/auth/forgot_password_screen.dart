@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:travel_in/widgets/buttons/back_button.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/images/top_image.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 import 'package:travel_in/widgets/texts/pin_field.dart';
 
@@ -23,10 +25,9 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Stack(children:[
@@ -44,7 +45,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-      
+            
               ]),
               Padding(
                 padding: const EdgeInsets.all(30.0),
@@ -54,7 +55,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       height: 55,
                     ),
                     Label(
-                        title: "هل نسيت كلمة السر ؟",
+                        title: AppLocalizations.of(context)!.forgetpassword,
                         subTitle:
                             "لقد تم إرسال رمز تسجيل الدخول إلى البريد الإلكتروني الخاص بك "),
                     SizedBox(

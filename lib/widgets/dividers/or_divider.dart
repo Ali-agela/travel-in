@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_in/helper/constant.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrDivider extends StatelessWidget {
   const OrDivider({super.key});
@@ -17,7 +19,7 @@ class OrDivider extends StatelessWidget {
           ),
         ),
         Text(
-          '   او سجل باستخدام   ',
+          AppLocalizations.of(context)!.orsignwith,
           textDirection: TextDirection.ltr,
           style: GoogleFonts.cairo(
             color: blue1,

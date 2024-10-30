@@ -6,6 +6,8 @@ import 'package:travel_in/provider/resorts_provider.dart';
 
 import 'package:travel_in/widgets/buttons/back_button.dart';
 import 'package:travel_in/widgets/card/resort_offer_card.dart';
+import 'package:travel_in/widgets/clickables/text_filter_row.dart';
+import 'package:travel_in/widgets/dialogs/filter_dialog.dart';
 import 'package:travel_in/widgets/images/top_image.dart';
 import 'package:travel_in/widgets/scrolls/scroll_view_h.dart';
 import 'package:travel_in/widgets/texts/center_app_title.dart';
@@ -46,7 +48,22 @@ class _SearchScreenState extends State<SearchScreen> {
                               ],
                             ),
                           ),
-      
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 108, 16, 0),
+                        child: Row(
+                          children: [
+                            TextFilterRow(subtitle: "فلترة النتائج", onTap: (){
+                              Navigator.pushAndRemoveUntil(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => FilterDialog()),
+                            (route) => false);
+                            },),
+                            SizedBox(width: 220,),
+                            TextFilterRow(subtitle: "الكل", onTap: (){},),
+                          ],
+                        ),
+                      )
                   ]),
                   ScrollViewH(
                     title: "الأعلى تقييماً",
