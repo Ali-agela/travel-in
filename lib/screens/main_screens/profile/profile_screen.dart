@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_in/helper/constant.dart';
@@ -16,6 +17,9 @@ import 'package:travel_in/widgets/texts/center_app_title.dart';
 import 'package:travel_in/widgets/texts/custom_title.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 import 'package:travel_in/widgets/texts/pin_field.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
@@ -61,6 +65,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         onTap: () {},
                                         child: CustomBackButton()),
                                   ],
+
+
+  // @override
+  // void initState(){
+  //   // Provider.of<TasksProvider>(context, listen: false).getTasks();//
+  //   // Provider.of<DarkModeProvider>(context, listen: false).getMode();//
+  //   super.initState();
+  // }
+  
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Consumer<DarkModeProvider>(
+      builder: (context, darkModeConsumer, _) {
+        return Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Stack(children: [
+                    TopImage(),
+                    CenterAppTitle(title: AppLocalizations.of(context)!.travelin),
+                    Positioned(
+                      child: Center(
+                        child: Column(
+                         
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [ 
+                                GestureDetector(
+                                  onTap: (){
+                                  },
+                                  child: CustomBackButton()
                                 ),
                               ),
                               Row(
@@ -203,5 +245,90 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       );
     });
+                            ),
+                          ]),
+                                     SizedBox(height: 8,),
+                
+                    CustomTitle(title: AppLocalizations.of(context)!.username)                
+                        ]),
+                      ),
+                    ),
+                  ]),
+                 SizedBox(height: 16,),
+                  Padding(padding: EdgeInsets.all(8),
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                color: darkModeConsumer.isDark
+                ? darkcolor
+                : white,
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                boxShadow: [
+            BoxShadow(
+              color: lightgrey.withOpacity(0.5),
+              spreadRadius:6,
+              blurRadius: 8,
+              offset: Offset(0, 2), // changes position of shadow
+            ),
+                ],
+            ),
+                        width: getSize(context).width*0.8,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                       
+                      children: [
+                                 const SizedBox(height: 8),
+                  SettingTile(
+                      text: AppLocalizations.of(context)!.accountinformation, onTab: () {
+                                                Navigator.pushAndRemoveUntil(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => ProfileInfoScreen()),
+                            (route) => false);
+
+                      }, 
+                      asset: "assets/icons/profile_icon.png",),
+                  SettingTile(
+                      text: AppLocalizations.of(context)!.notifications, onTab: () {}, 
+                      asset: "assets/icons/notification_icon.png",),
+                
+                  SettingTile(
+                      text: AppLocalizations.of(context)!.electronicpayment, onTab: () {}, 
+                      asset: "assets/icons/payment_icon.png",),
+                  
+                  SettingTile(
+                      text: darkModeConsumer.isDark
+                    ? AppLocalizations.of(context)!.lightmode
+                    : AppLocalizations.of(context)!.darkmode, 
+                    onTab: () {
+                     Provider.of<DarkModeProvider>(context,
+                      listen: false)
+                     .switchMode();
+                    },
+                      asset: darkModeConsumer.isDark
+                      ? "assets/icons/mode_icon.png"
+                      :  "assets/icons/light_mode_icon.png",),
+                
+                     const CustomExpansionTile(),
+                
+                
+                  SettingTile(
+                      text: AppLocalizations.of(context)!.contactus, onTab: () {}, 
+                      asset: "assets/icons/contact_icon.png",),
+                
+                  SettingTile(
+                      text: AppLocalizations.of(context)!.logout, onTab: () {}, 
+                      asset: "assets/icons/logout_icon.png",
+                      withDivider: false,),
+                    ],),
+                  ),)
+                 
+                ],
+              ),
+            ),
+          ),
+        );
+      }
+    );
   }
 }

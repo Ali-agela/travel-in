@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/helper/size.dart';
 import 'package:travel_in/models/ResortModel.dart';
+import 'package:travel_in/provider/dark_mode_provider.dart';
 import 'package:travel_in/widgets/card/home_card.dart';
 
 class ScrollViewH extends StatelessWidget {
@@ -16,39 +20,46 @@ class ScrollViewH extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("resorts.length ${resorts.length}");
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.cairo(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
+    return Consumer<DarkModeProvider>(
+      builder: (context, darkModeConsumer, _) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.cairo(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: darkModeConsumer.isDark 
+                  ? white
+                  : Colors.black
+                ),
+              ),
             ),
-          ),
-        ),
-        Container(
-          height: getSize(context).height * (170 / 852),
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: resorts.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                  child: SizedBox(
-                      width: getSize(context).width * 0.4,
-                      child: HomeCard(
-                        resort: resorts[index],
-                        isResort: isResort,
-                      )),
-                );
-              }),
-        ),
-      ],
+            Container(
+              height: getSize(context).height * (170 / 852),
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: resorts.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      child: SizedBox(
+                          width: getSize(context).width * 0.4,
+                          child: HomeCard(
+                            resort: resorts[index],
+                            isResort: isResort,
+                          )),
+                    );
+                  }),
+            ),
+          ],
+        );
+      }
     );
   }
 }

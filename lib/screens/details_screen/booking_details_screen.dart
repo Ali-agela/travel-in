@@ -8,6 +8,8 @@ import 'package:travel_in/widgets/images/top_image.dart';
 import 'package:travel_in/widgets/texts/center_app_title.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 import 'package:travel_in/widgets/texts/spasification_text.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingDetailsScreen extends StatefulWidget {
   const BookingDetailsScreen({super.key});
@@ -26,7 +28,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
           children: [
             Stack(children:[ 
               TopImage(),
-                CenterAppTitle(title: "تفاصيل الحجز"),
+                CenterAppTitle(title: AppLocalizations.of(context)!.bookingdetails),
                Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                               child: Row(
@@ -88,7 +90,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                       ),
                       BlueButton(
                         onTap: () {},
-                        buttonText: "تعديل الحجز",
+                        buttonText: AppLocalizations.of(context)!.editbooking,
                         filled: false,
                       ),
                       SizedBox(
@@ -96,7 +98,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                       ),
                       BlueButton(
                         onTap: () {},
-                        buttonText: "إلغاء الحجز",
+                        buttonText: AppLocalizations.of(context)!.cancelbooking,
                       )
                     ],
                   )

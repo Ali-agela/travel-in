@@ -11,6 +11,9 @@ import 'package:travel_in/widgets/dividers/long_blue_divider.dart';
 import 'package:travel_in/widgets/rating/ratings.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 import 'package:travel_in/widgets/texts/text_with_icon.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class ResortDetailScreen extends StatefulWidget {
   const ResortDetailScreen({super.key, required this.resort});
@@ -101,8 +104,8 @@ class _ResortDetailScreenState extends State<ResortDetailScreen> {
                       ),
                       const SizedBox(height: 20),
                       const LongBlueDivider(),
-                      const Label(
-                        title: "عروض الحجز",
+                      Label(
+                        title: AppLocalizations.of(context)!.bookingoffers,
                       ),
                       ListView.builder(
                           shrinkWrap: true,

@@ -13,6 +13,9 @@ import 'package:travel_in/widgets/dividers/scroll_divider.dart';
 import 'package:travel_in/widgets/rating/ratings.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 import 'package:travel_in/widgets/texts/text_with_icon.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class OfferDetailScreen extends StatefulWidget {
   const OfferDetailScreen({super.key, required this.offer});
@@ -93,8 +96,8 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                     SizedBox(height: 10),
                     LongBlueDivider(),
                     SizedBox(height: 10),
-                    const Label(
-                      title: "المواصفات والخدمات ",
+                     Label(
+                      title: AppLocalizations.of(context)!.spesifications,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 45),
@@ -133,7 +136,7 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                                 return BookingDialog();
                               });
                         },
-                        buttonText: "احجز الان",
+                        buttonText: AppLocalizations.of(context)!.booknow,
                       ),
                     ),
                   ],
