@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/helper/size.dart';
+import 'package:travel_in/provider/dark_mode_provider.dart';
 import 'package:travel_in/provider/resorts_provider.dart';
 import 'package:travel_in/widgets/card/sliver_card.dart';
 import 'package:travel_in/widgets/dividers/scroll_divider.dart';
 import 'package:travel_in/widgets/scrolls/scroll_view_h.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,8 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ResortsProvider>(
-        builder: (context, resortsConsumer, child) {
+    return Consumer2<ResortsProvider, DarkModeProvider>(
+        builder: (context, resortsConsumer, darkModeConsumer, child) {
       return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -41,17 +46,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 300,
                       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
-                        color: Colors.grey[300],
+                        color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Stack(
                         children: [
                           Positioned.fill(
                             child: Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
+                              baseColor: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300]!,
                               highlightColor: Colors.grey[100]!,
                               child: Container(
-                                color: Colors.grey[300],
+                                color: darkModeConsumer.isDark ?Colors.black12 : Colors.grey[300],
                               ),
                             ),
                           ),
@@ -64,13 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: double.infinity,
                                   height: 24,
-                                  color: Colors.grey[300],
+                                  color: darkModeConsumer.isDark ?Colors.black12 : Colors.grey[300],
                                 ),
                                 SizedBox(height: 10),
                                 Container(
                                   width: double.infinity,
                                   height: 14,
-                                  color: Colors.grey[300],
+                                  color: darkModeConsumer.isDark ?Colors.black12 : Colors.grey[300],
                                 ),
                               ],
                             ),
@@ -102,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text.rich(
                               TextSpan(
-                                text: " ابدأ التخطيط لرحلتك القادمة مع",
+                                text: AppLocalizations.of(context)!.planyournexttripwithtravelin,
                                 style: GoogleFonts.cairo(
                                   fontSize: 18,
                                   fontWeight: FontWeight.normal,
@@ -110,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: "Travelin",
+                                    text: AppLocalizations.of(context)!.travelin,
                                     style: GoogleFonts.cairo(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
@@ -122,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             SizedBox(height: 10),
                             Text(
-                                "اختر من بين مجموعة واسعة من المنتجعات والمصائف المميزة في ليبيا واستمتع بتجربة  لا تنسى",
+                                AppLocalizations.of(context)!.choosefromawiderangeofresortsanddestinationsinlibya,
                                 style: GoogleFonts.cairo(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -151,14 +156,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 100,
                                   margin: EdgeInsets.symmetric(horizontal: 4),
                                   decoration: BoxDecoration(
-                                    color: Colors.grey[300],
+                                    color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
                                     borderRadius: BorderRadius.circular(24),
                                   ),
                                   child: Shimmer.fromColors(
-                                    baseColor: Colors.grey[300]!,
+                                    baseColor: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300]!,
                                     highlightColor: Colors.grey[100]!,
                                     child: Container(
-                                      color: Colors.grey[300],
+                                      color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
                                     ),
                                   ),
                                 );
@@ -166,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           : ScrollViewH(
                               resorts: resortsConsumer.resorts,
-                              title: "منتجعات",
+                              title: AppLocalizations.of(context)!.resorts,
                             ),
                       SizedBox(height: getSize(context).height * 0.02),
                       resortsConsumer.isLoading
@@ -178,14 +183,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 100,
                                   margin: EdgeInsets.symmetric(horizontal: 4),
                                   decoration: BoxDecoration(
-                                    color: Colors.grey[300],
+                                    color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
                                     borderRadius: BorderRadius.circular(24),
                                   ),
                                   child: Shimmer.fromColors(
-                                    baseColor: Colors.grey[300]!,
+                                    baseColor: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300]!,
                                     highlightColor: Colors.grey[100]!,
                                     child: Container(
-                                      color: Colors.grey[300],
+                                      color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
                                     ),
                                   ),
                                 );
@@ -193,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           : ScrollViewH(
                               resorts: resortsConsumer.resorts,
-                              title: "رحلات",
+                              title: AppLocalizations.of(context)!.trips
                             ),
                       SizedBox(height: getSize(context).height * 0.02),
                       resortsConsumer.isLoading
@@ -205,11 +210,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 100,
                                   margin: EdgeInsets.symmetric(horizontal: 4),
                                   decoration: BoxDecoration(
-                                    color: Colors.grey[300],
+                                    color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
                                     borderRadius: BorderRadius.circular(24),
                                   ),
                                   child: Shimmer.fromColors(
-                                    baseColor: Colors.grey[300]!,
+                                    baseColor: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300]!,
                                     highlightColor: Colors.grey[100]!,
                                     child: Container(
                                       color: Colors.grey[300],
@@ -220,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           : ScrollViewH(
                               resorts: resortsConsumer.resorts,
-                              title: "عروض (قريبا)"),
+                              title: AppLocalizations.of(context)!.offers),
                       SizedBox(height: getSize(context).height * 0.1),
                     ],
                   ),

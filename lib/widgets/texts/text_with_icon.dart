@@ -9,7 +9,7 @@ class TextWithIcon extends StatelessWidget {
       this.padding = 9,
       this.space = 0});
   final String text;
-  final String icon;
+  final Widget icon;
   final Color? backGroundColor;
   final double padding;
   final double space;
@@ -23,7 +23,7 @@ class TextWithIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
             ),
             padding: EdgeInsets.all(padding),
-            child: Image.asset(icon)),
+            child: icon),
         SizedBox(width: space),
         Text(text),
       ],

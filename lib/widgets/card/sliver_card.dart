@@ -10,9 +10,10 @@ import 'package:travel_in/widgets/images/swiper_image.dart';
 import 'package:travel_in/models/ResortModel.dart' as resort_model;
 
 class SliverCard extends StatelessWidget {
-  const SliverCard({super.key, this.children = const [SizedBox()], required this.images});
+  const SliverCard(
+      {super.key, this.children = const [SizedBox()], required this.images});
   final List<Widget> children;
-  final List<resort_model.Image> images ;
+  final List<resort_model.Image> images;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -28,12 +29,12 @@ class SliverCard extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
           background: Stack(
         children: [
-          Positioned.fill(
-            child: SwiperImage(
-              index: 1,
-              image: "assets/pics/1.png",
-            ),
-          ),
+          // Positioned.fill(
+          //   child: SwiperImage(
+          //     index: 1,
+          //     image: "assets/pics/1.png",
+          //   ),
+          // ),
           Swiper.children(
               pagination: const SwiperPagination(
                 alignment: Alignment(0, 0.97),
@@ -55,27 +56,17 @@ class SliverCard extends StatelessWidget {
                     ))),
               ]),
           ...children,
-                       Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [ 
-                              GestureDetector(
-                                onTap: (){
-                                },
-                                child: CustomBackButtonwithOpacity()
-                              ),
-
-                              GestureDetector(
-                                onTap: (){
-                                },
-                                child: CustomLikeButton()
-                              ),
-
-                              ],
-                            ),
-                          ),
-
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                    onTap: () {}, child: CustomBackButtonwithOpacity()),
+                GestureDetector(onTap: () {}, child: CustomLikeButton()),
+              ],
+            ),
+          ),
         ],
       )),
     );

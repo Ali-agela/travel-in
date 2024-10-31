@@ -1,20 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CounterButton extends StatelessWidget {
-  const CounterButton({super.key});
+class CounterButton extends StatefulWidget {
+  const CounterButton({super.key, this.title = 'عدد الافراد'});
+  final String title;
 
+  @override
+  State<CounterButton> createState() => _CounterButtonState();
+}
+
+class _CounterButtonState extends State<CounterButton> {
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("عدد الافراد"),
+        Text(widget.title),
         SizedBox(
           width: 20,
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              counter++;
+            });
+          },
           icon: Icon(Icons.add_a_photo_rounded),
         ),
         Container(
@@ -24,11 +35,17 @@ class CounterButton extends StatelessWidget {
             ),
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
             child: Text(
-              "2",
+              counter.toString(),
               style: TextStyle(color: Colors.white),
             )),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              if (counter > 0) {
+                counter--;
+              }
+            });
+          },
           icon: Icon(Icons.add_a_photo_rounded),
         ),
       ],

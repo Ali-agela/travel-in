@@ -33,7 +33,11 @@ class SuccesDialog extends StatelessWidget {
             LogoImage(),
             Text("شكراً لاختيارك Travel in"),
             const SizedBox(height: 20),
-            BlueButton(onTap: (){}, buttonText: "الخروج")
+            BlueButton(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                buttonText: "الخروج")
           ],
         ),
       ),

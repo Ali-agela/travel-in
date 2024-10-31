@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DarkModeProvider with ChangeNotifier {
-  bool isDark = false;
+  bool isDark = true;
 
   switchMode() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

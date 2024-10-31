@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/helper/size.dart';
 import 'package:travel_in/provider/dark_mode_provider.dart';
+import 'package:travel_in/screens/main_screens/profile/profile_info_screen.dart';
 import 'package:travel_in/widgets/buttons/back_button.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/clickables/expansion_tile.dart';
@@ -14,6 +16,9 @@ import 'package:travel_in/widgets/texts/center_app_title.dart';
 import 'package:travel_in/widgets/texts/custom_title.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 import 'package:travel_in/widgets/texts/pin_field.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
@@ -38,7 +43,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Consumer<DarkModeProvider>(
       builder: (context, darkModeConsumer, _) {
         return Scaffold(
-          backgroundColor: white,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -46,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   Stack(children: [
                     TopImage(),
-                    CenterAppTitle(title: "Travelin"),
+                    CenterAppTitle(title: AppLocalizations.of(context)!.travelin),
                     Positioned(
                       child: Center(
                         child: Column(
@@ -91,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ]),
                                      SizedBox(height: 8,),
                 
-                    CustomTitle(title: "اسم المستخدم")                
+                    CustomTitle(title: AppLocalizations.of(context)!.username)                
                         ]),
                       ),
                     ),
@@ -101,7 +105,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Container(
                     padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                color: white,
+                color: darkModeConsumer.isDark
+                ? darkcolor
+                : white,
                 borderRadius: BorderRadius.all(Radius.circular(16)),
                 boxShadow: [
             BoxShadow(
@@ -119,14 +125,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                                  const SizedBox(height: 8),
                   SettingTile(
-                      text: "معلومات الحساب", onTab: () {}, 
+                      text: AppLocalizations.of(context)!.accountinformation, onTab: () {
+                                                Navigator.pushAndRemoveUntil(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => ProfileInfoScreen()),
+                            (route) => false);
+
+                      }, 
                       asset: "assets/icons/profile_icon.png",),
                   SettingTile(
-                      text: "الإشعارات", onTab: () {}, 
+                      text: AppLocalizations.of(context)!.notifications, onTab: () {}, 
                       asset: "assets/icons/notification_icon.png",),
                 
                   SettingTile(
-                      text: "الدفع الإلكتروني", onTab: () {}, 
+                      text: AppLocalizations.of(context)!.electronicpayment, onTab: () {}, 
                       asset: "assets/icons/payment_icon.png",),
                   
                   SettingTile(
@@ -146,11 +159,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 
                 
                   SettingTile(
-                      text: "تواصل معنا", onTab: () {}, 
+                      text: AppLocalizations.of(context)!.contactus, onTab: () {}, 
                       asset: "assets/icons/contact_icon.png",),
                 
                   SettingTile(
-                      text: "تسجيل الخروج", onTab: () {}, 
+                      text: AppLocalizations.of(context)!.logout, onTab: () {}, 
                       asset: "assets/icons/logout_icon.png",
                       withDivider: false,),
                     ],),

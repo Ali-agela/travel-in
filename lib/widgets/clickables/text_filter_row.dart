@@ -2,7 +2,9 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:travel_in/helper/constant.dart';
+import 'package:travel_in/provider/dark_mode_provider.dart';
 import 'package:travel_in/widgets/texts/custom_title.dart';
 
 class TextFilterRow extends StatefulWidget {
@@ -21,26 +23,35 @@ class _StarsFilterRowState extends State<TextFilterRow> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          isClicked = !isClicked;
-        });
-        widget.onTap();
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: isClicked ? baleblue.withOpacity(0.5) : Colors.white,
-          border: Border.all(color: dividercolor.withOpacity(0.8), width: 2),
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: CustomTitle(
-          title: widget.subtitle,
-          fontSize: 14,
-          fontwight: FontWeight.normal,
-        ),
-        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      ),
+    return Consumer<DarkModeProvider>(
+      builder: (context, darkModeConsumer, _) {
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              isClicked = !isClicked;
+            });
+            widget.onTap();
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: isClicked ? baleblue.withOpacity(0.5) : darkModeConsumer.isDark 
+              ? greycolor
+              :white,
+              border: Border.all(color: dividercolor.withOpacity(0.8), width: 2),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: CustomTitle(
+              title: widget.subtitle,
+              fontSize: 14,
+              fontwight: FontWeight.normal,
+              color: darkModeConsumer.isDark
+              ? white
+              : darktxtcolor,
+            ),
+            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          ),
+        );
+      }
     );
   }
 }

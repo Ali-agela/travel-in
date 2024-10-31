@@ -11,6 +11,8 @@ import 'package:travel_in/widgets/images/top_image.dart';
 import 'package:travel_in/widgets/texts/center_app_title.dart';
 import 'package:travel_in/widgets/texts/custom_title.dart';
 import 'package:travel_in/widgets/texts/text_field_widget.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileInfoScreen extends StatefulWidget {
   const ProfileInfoScreen({super.key});
@@ -31,14 +33,13 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: white,
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Stack(children: [
                 TopImage(),
-               CenterAppTitle(title: !edit ? "معلومات الحساب" : "تعديل الحساب"),
+               CenterAppTitle(title: !edit ? AppLocalizations.of(context)!.profileinfo: AppLocalizations.of(context)!.editprofile),
                 Positioned(
                   child: Center(
                     child: Column(children: [
@@ -92,10 +93,10 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                         TextButton(
                             onPressed: () {},
                             child: CustomTitle(
-                              title: "تعديل الصورة",
+                              title: AppLocalizations.of(context)!.editpic,
                               fontSize: 14,
                             )),
-                      if (!edit) CustomTitle(title: "اسم المستخدم")
+                      if (!edit) CustomTitle(title: AppLocalizations.of(context)!.username)
                     ]),
                   ),
                 ),
@@ -109,11 +110,12 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomTitle(
-                        title: "الاسم",
-                        fontSize: 16,
+                        title:AppLocalizations.of(context)!.name,
+                        fontSize: 14,
                       ),
                       TextFieldWidget(
                         isEnabled: edit,
+                        height: 0.5,
                         controller: nameController,
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -130,11 +132,12 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                         label: '',
                       ),
                       CustomTitle(
-                        title: "البريد الإلكتروني",
-                        fontSize: 16,
+                        title: AppLocalizations.of(context)!.email,
+                        fontSize: 14,
                       ),
                       TextFieldWidget(
                           isEnabled: edit,
+                          height: 0.5,
                           controller: emailController,
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -150,11 +153,12 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                           hint: '',
                           label: ' '),
                       CustomTitle(
-                        title: "رقم الهاتف",
-                        fontSize: 16,
+                        title: AppLocalizations.of(context)!.phonenumber,
+                        fontSize: 14,
                       ),
                       TextFieldWidget(
                           isEnabled: edit,
+                           height: 0.5,
                           controller: phoneController,
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -170,11 +174,12 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                           hint: '',
                           label: ''),
                       CustomTitle(
-                        title: "المدينة",
-                        fontSize: 16,
+                        title: AppLocalizations.of(context)!.city,
+                        fontSize: 14,
                       ),
                       TextFieldWidget(
                         isEnabled: edit,
+                        height: 0.5,
                         controller: nameController,
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -191,8 +196,8 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                         label: '',
                       ),
                       CustomTitle(
-                        title: "تاريخ الميلاد",
-                        fontSize: 16,
+                        title: AppLocalizations.of(context)!.birthdate,
+                        fontSize: 14,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -211,6 +216,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                         },
                         child: TextFieldWidget(
                             isEnabled: false,
+                            height: 0.5,
                             showBorder: edit,
                             controller: dobController,
                             validator: (value) {
@@ -234,8 +240,9 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                                   edit = !edit;
                                 });
                               },
-                              buttonText: "حفظ التعديلات"),
+                              buttonText: AppLocalizations.of(context)!.savechanges),
                         ),
+                        SizedBox(height: 16,),
                       if (edit)
                         Center(
                           child: whiteButton(
@@ -244,7 +251,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                                   edit = !edit;
                                 });
                               },
-                              buttonText: "إلغاء"),
+                              buttonText: AppLocalizations.of(context)!.cancel),
                         )
                     ],
                   ))

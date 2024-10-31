@@ -1,23 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_in/models/ResortOfferModel.dart';
+import 'package:travel_in/provider/reservation_provider.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
-import 'package:travel_in/widgets/buttons/counter_button.dart';
 import 'package:travel_in/widgets/card/sliver_card.dart';
 import 'package:travel_in/widgets/dialogs/booking_dialog.dart';
-import 'package:travel_in/widgets/dialogs/booking_info.dart';
 import 'package:travel_in/widgets/dialogs/confirmation_dialog.dart';
-import 'package:travel_in/widgets/dialogs/date_dialog.dart';
-import 'package:travel_in/widgets/dialogs/payment_dialoag.dart';
 import 'package:travel_in/widgets/dialogs/succes_dialog.dart';
 import 'package:travel_in/widgets/dividers/long_blue_divider.dart';
 import 'package:travel_in/widgets/dividers/scroll_divider.dart';
 import 'package:travel_in/widgets/rating/ratings.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 import 'package:travel_in/widgets/texts/text_with_icon.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class OfferDetailScreen extends StatefulWidget {
-  const OfferDetailScreen({super.key});
-
+  const OfferDetailScreen({super.key, required this.offer});
+  final ResortOfferModel offer;
   @override
   State<OfferDetailScreen> createState() => _OfferDetailScreenState();
 }
@@ -28,7 +30,9 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          //SliverCard(),
+          SliverCard(
+            images: widget.offer.images,
+          ),
           SliverList(
             delegate: SliverChildListDelegate([
               ScrollDivider(),
@@ -40,8 +44,8 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                   children: [
                     Row(
                       children: [
-                        const Label(
-                          title: "فيلا",
+                        Label(
+                          title: widget.offer.name,
                         ),
                         Spacer(),
                         Column(children: [
@@ -51,11 +55,11 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                       ],
                     ),
                     TextWithIcon(
-                      icon: "assets/icons/build.png",
+                      icon: Image.asset("assets/icons/build.png"),
                       text: "مكاتب الحجز",
                     ),
                     TextWithIcon(
-                      icon: "assets/icons/phone2.png",
+                      icon: Image.asset("assets/icons/phone2.png"),
                       text: "0915544666 / 0925544666",
                     ),
                     LongBlueDivider(),
@@ -67,20 +71,21 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           TextWithIcon(
-                              icon: "assets/icons/room.png",
-                              text: "4 غرف",
+                              icon:Image.asset( "assets/icons/room.png"),
+                              text: widget.offer.numberOfRooms,
                               space: 10,
                               backGroundColor:
                                   Color(0xff6FCCCC).withOpacity(0.25)),
                           TextWithIcon(
-                              icon: "assets/icons/person2.png",
-                              text: "8 اشخاص",
+                              icon: Image.asset("assets/icons/person2.png"),
+                              text: "${widget.offer.numberOfPoeple} اشخاص",
                               space: 10,
                               backGroundColor:
                                   Color(0xff6FCCCC).withOpacity(0.25)),
                           TextWithIcon(
-                              icon: "assets/icons/money.png",
-                              text: "800 د.ل\n /اليوم ",
+                              icon: Image.asset("assets/icons/money.png"),
+                              text:
+                                  "${widget.offer.pricePerRoom} د.ل\n /اليوم ",
                               space: 10,
                               backGroundColor:
                                   Color(0xff6FCCCC).withOpacity(0.25)),
@@ -90,8 +95,8 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                     SizedBox(height: 10),
                     LongBlueDivider(),
                     SizedBox(height: 10),
-                    const Label(
-                      title: "المواصفات والخدمات ",
+                     Label(
+                      title: AppLocalizations.of(context)!.spesifications,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 45),
@@ -104,11 +109,12 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                                   crossAxisCount: 2,
                                   mainAxisExtent: 30,
                                   crossAxisSpacing: 10),
-                          itemCount: 7,
+                          itemCount: widget.offer.spasifications.length,
                           itemBuilder: (context, index) {
                             return TextWithIcon(
-                              text: "حوض السباحة",
-                              icon: "assets/icons/check.png",
+                              text: widget
+                                  .offer.spasifications[index].spasification,
+                              icon: Image.asset("assets/icons/check.png"),
                               padding: 0,
                             );
                           }),
@@ -118,14 +124,18 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                     Center(
                       child: BlueButton(
                         onTap: () {
+                          Provider.of<ReservationProvider>(context,
+                                  listen: false)
+                              .reservationModel
+                              .resortId = widget.offer.id;
                           showDialog(
                               barrierColor: Colors.white.withOpacity(0.2),
                               context: context,
                               builder: (context) {
-                                return SuccesDialog();
+                                return BookingDialog();
                               });
                         },
-                        buttonText: "احجز الان",
+                        buttonText: AppLocalizations.of(context)!.booknow,
                       ),
                     ),
                   ],
