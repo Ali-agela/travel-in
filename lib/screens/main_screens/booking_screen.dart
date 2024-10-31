@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_in/helper/size.dart';
+import 'package:travel_in/provider/favorite_provider.dart';
 import 'package:travel_in/provider/reservation_provider.dart';
 import 'package:travel_in/provider/resorts_provider.dart';
 import 'package:travel_in/widgets/buttons/back_button.dart';
@@ -25,28 +26,17 @@ class _BookingScreenState extends State<BookingScreen> {
   void initState() {
     Provider.of<ReservationProvider>(context, listen: false)
         .fetchReservations();
+    Provider.of<FavoriteProvider>(context, listen: false).fetchFavorites();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<ResortsProvider, ReservationProvider>(
-        builder: (context, resortsConsumer, reservationConsumer, child) {
+    return Consumer3<ResortsProvider, ReservationProvider, FavoriteProvider>(
+        builder: (context, resortsConsumer, reservationConsumer,
+            favoriteConsumer, child) {
       return Scaffold(
         backgroundColor: Colors.white,
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   title: Text("الحجوزات "),
-        //   centerTitle: true,
-        //   leading: Container(
-        //     decoration: BoxDecoration(
-        //       color: Colors.white,
-        //       shape: BoxShape.circle,
-        //     ),
-        //     padding: EdgeInsets.all(10),
-        //     child: Icon(Icons.notifications),
-        //   ),
-        // ),
         body: SafeArea(
           child: Stack(
             children: [
@@ -128,9 +118,10 @@ class _BookingScreenState extends State<BookingScreen> {
                   ),
                   Expanded(
                     child: TabBarView(children: [
-                      thereIsData
+                      reservationConsumer.reservations.isNotEmpty
                           ? ListView.builder(
-                              itemCount: 5,
+                              itemCount:
+                                  reservationConsumer.reservations.length,
                               itemBuilder: (context, index) {
                                 return BookedCard(
                                   resevedResorsModel:
@@ -143,7 +134,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                 style: TextStyle(fontSize: 20),
                               ),
                             ),
-                      thereIsFav
+                      favoriteConsumer.favoriteOffers.isNotEmpty
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -153,14 +144,17 @@ class _BookingScreenState extends State<BookingScreen> {
                                   SizedBox(
                                       height: getSize(context).height * 0.02),
                                   Text("العروض التي سجلت إعجابك بها"),
-                                  // Expanded(
-                                  //   child: ListView.builder(
-                                  //       padding: EdgeInsets.all(10),
-                                  //       itemCount: 5,
-                                  //       itemBuilder: (context, index) {
-                                  //         return ResortOfferCard();
-                                  //       }),
-                                  // ),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        padding: EdgeInsets.all(10),
+                                        itemCount: favoriteConsumer
+                                            .favoriteOffers.length,
+                                        itemBuilder: (context, index) {
+                                          return ResortOfferCard(
+                                              resortOfferModel: favoriteConsumer
+                                                  .favoriteOffers[index]);
+                                        }),
+                                  ),
                                 ])
                           : Center(
                               child: Text(

@@ -28,6 +28,7 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
       body: CustomScrollView(
         slivers: [
           SliverCard(
+            offer: widget.offer,
             images: widget.offer.images,
           ),
           SliverList(
@@ -68,7 +69,7 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           TextWithIcon(
-                              icon:Image.asset( "assets/icons/room.png"),
+                              icon: Image.asset("assets/icons/room.png"),
                               text: widget.offer.numberOfRooms,
                               space: 10,
                               backGroundColor:

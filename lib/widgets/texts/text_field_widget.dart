@@ -5,19 +5,20 @@ import 'package:travel_in/helper/constant.dart';
 class TextFieldWidget extends StatefulWidget {
   const TextFieldWidget(
       {super.key,
-      required this.hint,
-      required this.label,
+      this.hint,
+      this.label,
       this.obSecure = false,
       this.perffix,
       this.suffix,
       this.isEnabled = false,
       required this.controller,
-      required this.validator,  this.showBorder =false});
+      required this.validator,
+      this.showBorder = false});
 
   final TextEditingController controller;
   final FormFieldValidator<String?> validator;
-  final String hint;
-  final String label;
+  final String? hint;
+  final String? label;
   final bool obSecure;
   final Widget? perffix;
   final Widget? suffix;
@@ -33,6 +34,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        controller: widget.controller,
         enabled: widget.isEnabled,
         obscureText: widget.obSecure,
         decoration: InputDecoration(
@@ -51,9 +53,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             borderSide: const BorderSide(color: Colors.black),
           ),
           disabledBorder: OutlineInputBorder(
-            
             borderRadius: BorderRadius.circular(16),
-            borderSide:  BorderSide(color: !widget.isEnabled && widget.showBorder ?Colors.black :Color(0xfff3f4f6)),
+            borderSide: BorderSide(
+                color: !widget.isEnabled && widget.showBorder
+                    ? Colors.black
+                    : Color(0xfff3f4f6)),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),

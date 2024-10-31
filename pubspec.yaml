@@ -48,6 +48,7 @@ dependencies:
   carousel_slider:
   smooth_page_indicator:
   flutter_date_range_picker: ^0.1.1
+  file_picker: ^8.1.3
 
 dev_dependencies:
   flutter_test:
