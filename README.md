@@ -1,16 +1,4 @@
 # travel_in
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# a project built but not finished for the Libyan Academy for Telecom and Informatics
+# If dynamic testing is needed please  contact on what's up  on a call at the number  0918715075  because the back-end is hosted  in my local machine 
+#the last updated and current running code is in Ali's branch 
