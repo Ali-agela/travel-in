@@ -15,19 +15,10 @@ class _BackButtonState extends State<CustomLikeButton> {
   bool? isLiked;
   @override
   initState() {
-    for (var i =0; i<Provider.of<FavoriteProvider>(context,listen: false).favoriteOffers.length; i++) {
-      if (Provider.of<FavoriteProvider>(context,listen: false).favoriteOffers[i].id == widget.offer.id) {
-        isLiked = true;
-        break;
-      } else {
-        isLiked = false;
-      }
-    }
-  setState(() {
-      print(isLiked);
-    });
+    isLiked = Provider.of<FavoriteProvider>(context, listen: false)
+        .isFavorite(widget.offer);
     super.initState();
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +44,7 @@ class _BackButtonState extends State<CustomLikeButton> {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color:
-                      isLiked! ? Colors.white : Colors.black.withOpacity(0.15)),
+                      isLiked! ? Colors.red : Colors.black.withOpacity(0.15)),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Image.asset(

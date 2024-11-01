@@ -7,6 +7,8 @@ import 'package:travel_in/provider/base_provider.dart';
 
 class AuthenticationProvider extends BaseProvider {
   UserModel? currentUser;
+  bool? isAuthed;
+  bool? isFistTime;
   Future<bool> logIn(Map<String, dynamic> body) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     setLoading(true);
@@ -65,8 +67,8 @@ class AuthenticationProvider extends BaseProvider {
 
   updateUserData(Map<String, dynamic> body) async {
     setLoading(true);
-    final res = await api.put(
-        'https://lizard-well-boar.ngrok-free.app/api/user', body);
+    final res =
+        await api.put('https://lizard-well-boar.ngrok-free.app/api/user', body);
     if (res.statusCode == 200) {
       getMe();
       setLoading(false);
@@ -74,5 +76,32 @@ class AuthenticationProvider extends BaseProvider {
     }
     setLoading(false);
     return false;
+  }
+
+  isAuth() async {
+    setLoading(true);
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var token = pref.getString("token") ?? "no token";
+    if (token == "no token") {
+      isAuthed = false;
+    } else {
+      isAuthed = true;
+    }
+    setLoading(false);
+  }
+
+  isFirst() async {
+    setLoading(true);
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    isFistTime = pref.getBool("isFirst") ?? true;
+    setLoading(false);
+  }
+
+  changIsFirstTime() async {
+    setLoading(true);
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool("isFirst", false);
+
+    setLoading(false);
   }
 }

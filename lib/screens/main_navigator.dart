@@ -18,7 +18,7 @@ class MainNavigator extends StatefulWidget {
 }
 
 class _MainNavigatorState extends State<MainNavigator> {
-  int nowIndex = 0;
+  int nowIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Consumer<DarkModeProvider>(builder: (context, darkModeConsumer, _) {

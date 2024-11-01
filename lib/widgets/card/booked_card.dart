@@ -13,7 +13,9 @@ class BookedCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BookingDetailsScreen()));
+            MaterialPageRoute(builder: (context) => BookingDetailsScreen(
+              id: resevedResorsModel.id,
+            )));
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

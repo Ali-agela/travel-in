@@ -7,7 +7,9 @@ import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/provider/dark_mode_provider.dart';
 
 class CustomBackButton extends StatefulWidget {
-  const CustomBackButton({super.key});
+  const CustomBackButton({super.key,this.isMain=false});
+    final bool isMain;
+
   @override
   State<CustomBackButton> createState() => _BackButtonState();
 }
@@ -15,7 +17,7 @@ class CustomBackButton extends StatefulWidget {
 class _BackButtonState extends State<CustomBackButton> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<DarkModeProvider>(builder: (context, darkModeConsumer, _) {
+    return widget.isMain? SizedBox() : Consumer<DarkModeProvider>(builder: (context, darkModeConsumer, _) {
       return GestureDetector(
           onTap: () {
             Navigator.pop(context);

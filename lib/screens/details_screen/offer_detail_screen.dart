@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_in/models/ResortOfferModel.dart';
+import 'package:travel_in/models/reservation_model.dart';
 import 'package:travel_in/provider/reservation_provider.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/card/sliver_card.dart';
@@ -18,13 +19,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class OfferDetailScreen extends StatefulWidget {
-  const OfferDetailScreen({super.key, required this.offer});
+  OfferDetailScreen({super.key, required this.offer,});
   final ResortOfferModel offer;
+  ReservationModel reservationModel = ReservationModel() ;
   @override
   State<OfferDetailScreen> createState() => _OfferDetailScreenState();
 }
 
 class _OfferDetailScreenState extends State<OfferDetailScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +99,7 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                     SizedBox(height: 10),
                     LongBlueDivider(),
                     SizedBox(height: 10),
-                     Label(
+                    Label(
                       title: AppLocalizations.of(context)!.spesifications,
                     ),
                     Padding(
@@ -125,15 +128,16 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                     Center(
                       child: BlueButton(
                         onTap: () {
-                          Provider.of<ReservationProvider>(context,
-                                  listen: false)
-                              .reservationModel
-                              .resortId = widget.offer.id;
+                          
                           showDialog(
                               barrierColor: Colors.white.withOpacity(0.2),
                               context: context,
                               builder: (context) {
-                                return BookingDialog();
+                                widget.reservationModel.resortId=widget.offer.id;
+                                widget.reservationModel.amount=int.parse( widget.offer.pricePerRoom);
+                                return BookingDialog(
+                                  reservationModel: widget.reservationModel,
+                                );
                               });
                         },
                         buttonText: AppLocalizations.of(context)!.booknow,

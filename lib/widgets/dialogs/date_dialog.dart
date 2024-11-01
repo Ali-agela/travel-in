@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_date_range_picker/flutter_date_range_picker.dart'
     as DateRangePicker;
 import 'package:provider/provider.dart';
+import 'package:travel_in/models/reservation_model.dart';
 import 'package:travel_in/provider/reservation_provider.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/dialogs/booking_info.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 
 class DateDialog extends StatelessWidget {
-  DateDialog({super.key});
+  DateDialog({super.key,required this.reservationModel});
   String? startDate;
   String? endDate;
+  ReservationModel reservationModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class DateDialog extends StatelessWidget {
       insetPadding: EdgeInsets.symmetric(horizontal: 0),
       child: Container(
           child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -56,14 +59,10 @@ class DateDialog extends StatelessWidget {
           BlueButton(
               onTap: () {
                 if (startDate != null && endDate != null) {
-                  Provider.of<ReservationProvider>(context, listen: false)
-                      .reservationModel
-                      .startDate = startDate;
-                  Provider.of<ReservationProvider>(context, listen: false)
-                      .reservationModel
-                      .endDate = endDate;
+                  reservationModel.startDate= DateTime.parse(startDate!);
+                   reservationModel.endDate= DateTime.parse(endDate!);
                   showDialog(
-                      context: context, builder: (context) => BookingInfo());
+                      context: context, builder: (context) => BookingInfo(reservationModel: reservationModel));
                 }
               },
               buttonText: "التالي"),

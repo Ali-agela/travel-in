@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:travel_in/helper/size.dart';
+import 'package:travel_in/models/reservation_model.dart';
+import 'package:travel_in/provider/reservation_provider.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/dialogs/confirmation_dialog.dart';
 import 'package:travel_in/widgets/dialogs/succes_dialog.dart';
 
 class PaymentDialoag extends StatelessWidget {
-  const PaymentDialoag({super.key});
+  PaymentDialoag({super.key, required this.reservationModel});
+  ReservationModel reservationModel;
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +54,22 @@ class PaymentDialoag extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              BlueButton(onTap: () {}, buttonText: "الخدمات المصرفية "),
+              BlueButton(
+                  onTap: () {
+                    reservationModel.method = "credit_card";
+                  },
+                  buttonText: "الخدمات المصرفية "),
               SizedBox(
                 height: 14,
               ),
               BlueButton(
                   onTap: () {
+                    reservationModel.method = "cash";
+                    print(reservationModel.method);
                     showDialog(
-                        context: context, builder: (context) => ConfirmationDialog());
+                        context: context,
+                        builder: (context) => ConfirmationDialog(
+                            reservationModel: reservationModel));
                   },
                   buttonText: "نقدا لدى مكتب الحجز"),
             ],

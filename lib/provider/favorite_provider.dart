@@ -51,4 +51,13 @@ class FavoriteProvider extends BaseProvider {
     setLoading(false);
     return false;
   }
+
+  bool isFavorite(ResortOfferModel offer) {
+    for (var favorite in favoriteOffers) {
+      if (favorite.id == offer.id) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

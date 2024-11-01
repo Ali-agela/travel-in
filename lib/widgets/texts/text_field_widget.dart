@@ -5,17 +5,6 @@ import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/provider/dark_mode_provider.dart';
 
 class TextFieldWidget extends StatefulWidget {
-  const TextFieldWidget(
-      {super.key,
-      this.hint,
-      this.label,
-      this.obSecure = false,
-      this.perffix,
-      this.suffix,
-      this.isEnabled = false,
-      required this.controller,
-      required this.validator,
-      this.showBorder = false});
   const TextFieldWidget({
     super.key,
     required this.hint,
@@ -48,78 +37,49 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextFormField(
-        controller: widget.controller,
-        enabled: widget.isEnabled,
-        obscureText: widget.obSecure,
-        decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-          filled: true,
-          fillColor: Color(0xfff3f4f6),
-          hintText: widget.hint,
-          hintTextDirection: TextDirection.rtl,
-          hintStyle: GoogleFonts.cairo(
-            color: darktxtcolor,
-            fontSize: 16,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: const BorderSide(color: Colors.black),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(
+    return Consumer<DarkModeProvider>(builder: (context, darkModeConsumer, _) {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextFormField(
+          controller: widget.controller,
+          enabled: widget.isEnabled,
+          obscureText: widget.obSecure,
+          decoration: InputDecoration(
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+            filled: true,
+            fillColor: darkModeConsumer.isDark ? greycolor : white,
+            hintText: widget.hint,
+            hintTextDirection: TextDirection.rtl,
+            hintStyle: GoogleFonts.cairo(
+              color: darktxtcolor,
+              fontSize: 16,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(color: Colors.black),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
                 color: !widget.isEnabled && widget.showBorder
                     ? Colors.black
-                    : Color(0xfff3f4f6)),
-
-    return Consumer<DarkModeProvider>(
-      builder: (context, darkModeConsumer, _) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextFormField(
-            enabled: widget.isEnabled,
-            obscureText: widget.obSecure,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-              filled: true,
-              fillColor: darkModeConsumer.isDark
-              ? greycolor
-              : white,
-              hintText: widget.hint,
-              hintTextDirection: TextDirection.rtl,
-              hintStyle: GoogleFonts.cairo(
-                color: darktxtcolor,
-                fontSize: 16,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: const BorderSide(color: Colors.black),
-              ),
-              disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(
-                  color: !widget.isEnabled && widget.showBorder
-                      ? Colors.black
-                      : Color(0xfff3f4f6),
-                ),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.red),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.blue),
+                    : Color(0xfff3f4f6),
               ),
             ),
-            style: TextStyle(height: widget.height), // Apply height to the text style
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(color: Colors.red),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(color: Colors.blue),
+            ),
           ),
-        );
-      }
-    );
+          style: TextStyle(
+              height: widget.height), // Apply height to the text style
+        ),
+      );
+    });
   }
 }

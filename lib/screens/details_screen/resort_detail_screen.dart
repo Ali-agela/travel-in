@@ -14,10 +14,9 @@ import 'package:travel_in/widgets/texts/text_with_icon.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class ResortDetailScreen extends StatefulWidget {
   const ResortDetailScreen({super.key, required this.resort});
-  final resort_model. ResortModel resort;
+  final resort_model.ResortModel resort;
   @override
   State<ResortDetailScreen> createState() => _ResortDetailScreenState();
 }
@@ -36,7 +35,6 @@ class _ResortDetailScreenState extends State<ResortDetailScreen> {
     return Consumer2<ResortsProvider, ResortsOfferProvider>(
         builder: (context, resortsConsumer, offerConsumer, _) {
       return Scaffold(
-        backgroundColor: Colors.white,
         body: CustomScrollView(
           slivers: [
             SliverCard(images: widget.resort.images),

@@ -12,7 +12,6 @@ import 'package:travel_in/widgets/scrolls/scroll_view_h.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -32,12 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer2<ResortsProvider, DarkModeProvider>(
         builder: (context, resortsConsumer, darkModeConsumer, child) {
       return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Provider.of<ResortsProvider>(context, listen: false).getResorts();
-          },
-          child: Icon(Icons.search),
-        ),
         body: CustomScrollView(
           slivers: [
             resortsConsumer.isLoading
@@ -46,17 +39,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 300,
                       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
-                        color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
+                        color: darkModeConsumer.isDark
+                            ? darktxtcolor
+                            : Colors.grey[300],
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Stack(
                         children: [
                           Positioned.fill(
                             child: Shimmer.fromColors(
-                              baseColor: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300]!,
+                              baseColor: darkModeConsumer.isDark
+                                  ? darktxtcolor
+                                  : Colors.grey[300]!,
                               highlightColor: Colors.grey[100]!,
                               child: Container(
-                                color: darkModeConsumer.isDark ?Colors.black12 : Colors.grey[300],
+                                color: darkModeConsumer.isDark
+                                    ? Colors.black12
+                                    : Colors.grey[300],
                               ),
                             ),
                           ),
@@ -69,13 +68,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: double.infinity,
                                   height: 24,
-                                  color: darkModeConsumer.isDark ?Colors.black12 : Colors.grey[300],
+                                  color: darkModeConsumer.isDark
+                                      ? Colors.black12
+                                      : Colors.grey[300],
                                 ),
                                 SizedBox(height: 10),
                                 Container(
                                   width: double.infinity,
                                   height: 14,
-                                  color: darkModeConsumer.isDark ?Colors.black12 : Colors.grey[300],
+                                  color: darkModeConsumer.isDark
+                                      ? Colors.black12
+                                      : Colors.grey[300],
                                 ),
                               ],
                             ),
@@ -85,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )
                 : SliverCard(
+                    isMain: false,
                     images: resortsConsumer.resorts[0].images,
                     children: [
                       Container(
@@ -107,7 +111,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text.rich(
                               TextSpan(
-                                text: AppLocalizations.of(context)!.planyournexttripwithtravelin,
+                                text: AppLocalizations.of(context)!
+                                    .planyournexttripwithtravelin,
                                 style: GoogleFonts.cairo(
                                   fontSize: 18,
                                   fontWeight: FontWeight.normal,
@@ -115,7 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: AppLocalizations.of(context)!.travelin,
+                                    text:
+                                        AppLocalizations.of(context)!.travelin,
                                     style: GoogleFonts.cairo(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
@@ -127,7 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             SizedBox(height: 10),
                             Text(
-                                AppLocalizations.of(context)!.choosefromawiderangeofresortsanddestinationsinlibya,
+                                AppLocalizations.of(context)!
+                                    .choosefromawiderangeofresortsanddestinationsinlibya,
                                 style: GoogleFonts.cairo(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -156,14 +163,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 100,
                                   margin: EdgeInsets.symmetric(horizontal: 4),
                                   decoration: BoxDecoration(
-                                    color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
+                                    color: darkModeConsumer.isDark
+                                        ? darktxtcolor
+                                        : Colors.grey[300],
                                     borderRadius: BorderRadius.circular(24),
                                   ),
                                   child: Shimmer.fromColors(
-                                    baseColor: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300]!,
+                                    baseColor: darkModeConsumer.isDark
+                                        ? darktxtcolor
+                                        : Colors.grey[300]!,
                                     highlightColor: Colors.grey[100]!,
                                     child: Container(
-                                      color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
+                                      color: darkModeConsumer.isDark
+                                          ? darktxtcolor
+                                          : Colors.grey[300],
                                     ),
                                   ),
                                 );
@@ -183,14 +196,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 100,
                                   margin: EdgeInsets.symmetric(horizontal: 4),
                                   decoration: BoxDecoration(
-                                    color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
+                                    color: darkModeConsumer.isDark
+                                        ? darktxtcolor
+                                        : Colors.grey[300],
                                     borderRadius: BorderRadius.circular(24),
                                   ),
                                   child: Shimmer.fromColors(
-                                    baseColor: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300]!,
+                                    baseColor: darkModeConsumer.isDark
+                                        ? darktxtcolor
+                                        : Colors.grey[300]!,
                                     highlightColor: Colors.grey[100]!,
                                     child: Container(
-                                      color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
+                                      color: darkModeConsumer.isDark
+                                          ? darktxtcolor
+                                          : Colors.grey[300],
                                     ),
                                   ),
                                 );
@@ -198,8 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           : ScrollViewH(
                               resorts: resortsConsumer.resorts,
-                              title: AppLocalizations.of(context)!.trips
-                            ),
+                              title: AppLocalizations.of(context)!.trips),
                       SizedBox(height: getSize(context).height * 0.02),
                       resortsConsumer.isLoading
                           ? Row(
@@ -210,11 +228,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 100,
                                   margin: EdgeInsets.symmetric(horizontal: 4),
                                   decoration: BoxDecoration(
-                                    color: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300],
+                                    color: darkModeConsumer.isDark
+                                        ? darktxtcolor
+                                        : Colors.grey[300],
                                     borderRadius: BorderRadius.circular(24),
                                   ),
                                   child: Shimmer.fromColors(
-                                    baseColor: darkModeConsumer.isDark ?darktxtcolor : Colors.grey[300]!,
+                                    baseColor: darkModeConsumer.isDark
+                                        ? darktxtcolor
+                                        : Colors.grey[300]!,
                                     highlightColor: Colors.grey[100]!,
                                     child: Container(
                                       color: Colors.grey[300],

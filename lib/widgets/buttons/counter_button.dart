@@ -2,15 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CounterButton extends StatefulWidget {
-  const CounterButton({super.key, this.title = 'عدد الافراد'});
+  CounterButton({super.key, this.title = 'عدد الافراد', required this.counter, required this.onPressed_add,required this.onPressed_take });
   final String title;
+  int counter ;
+  final Function onPressed_add;
+  final Function onPressed_take;  
 
   @override
   State<CounterButton> createState() => _CounterButtonState();
 }
 
 class _CounterButtonState extends State<CounterButton> {
-  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,9 +24,8 @@ class _CounterButtonState extends State<CounterButton> {
         ),
         IconButton(
           onPressed: () {
-            setState(() {
-              counter++;
-            });
+            widget.onPressed_add();
+           
           },
           icon: Icon(Icons.add_a_photo_rounded),
         ),
@@ -35,16 +36,12 @@ class _CounterButtonState extends State<CounterButton> {
             ),
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
             child: Text(
-              counter.toString(),
+             widget.counter.toString(),
               style: TextStyle(color: Colors.white),
             )),
         IconButton(
           onPressed: () {
-            setState(() {
-              if (counter > 0) {
-                counter--;
-              }
-            });
+              widget.onPressed_take();
           },
           icon: Icon(Icons.add_a_photo_rounded),
         ),

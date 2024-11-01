@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomBackButtonwithOpacity extends StatefulWidget {
-  const CustomBackButtonwithOpacity({super.key});
+  CustomBackButtonwithOpacity({super.key,this.isMain=false});
+
+  final bool isMain;
   @override
   State<CustomBackButtonwithOpacity> createState() => _BackButtonState();
 }
@@ -11,7 +13,7 @@ class CustomBackButtonwithOpacity extends StatefulWidget {
 class _BackButtonState extends State<CustomBackButtonwithOpacity> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return widget.isMain? SizedBox() :GestureDetector(
       onTap: (){
         Navigator.pop(context);
       },

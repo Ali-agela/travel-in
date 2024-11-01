@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_in/helper/size.dart';
+import 'package:travel_in/models/reservation_model.dart';
 import 'package:travel_in/widgets/buttons/blueButton.dart';
 import 'package:travel_in/widgets/dialogs/date_dialog.dart';
 import 'package:travel_in/widgets/texts/label.dart';
 
 class BookingDialog extends StatelessWidget {
-  const BookingDialog({super.key});
+   BookingDialog({super.key,required this.reservationModel});
+  ReservationModel reservationModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,6 @@ class BookingDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Container(
-        height: getSize(context).height * 0.5,
         padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -60,10 +61,12 @@ class BookingDialog extends StatelessWidget {
             const SizedBox(height: 14),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: BlueButton(onTap: () {
-                showDialog(
-                    context: context, builder: (context) => DateDialog());
-              }, buttonText: "تأكيد الحجز"),
+              child: BlueButton(
+                  onTap: () {
+                    showDialog(
+                        context: context, builder: (context) => DateDialog(reservationModel: reservationModel,));
+                  },
+                  buttonText: "تأكيد الحجز"),
             ),
           ],
         ),

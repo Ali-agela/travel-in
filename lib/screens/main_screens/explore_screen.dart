@@ -62,7 +62,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               children: [
                 GestureDetector(
                   onTap: () {},
-                  child: CustomBackButtonwithOpacity(),
+                  child: CustomBackButtonwithOpacity(isMain: true,),
                 ),
               ],
             ),

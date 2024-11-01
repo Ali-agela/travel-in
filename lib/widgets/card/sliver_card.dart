@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:travel_in/helper/constant.dart';
 import 'package:travel_in/helper/size.dart';
 import 'package:travel_in/models/ResortOfferModel.dart';
-import 'package:travel_in/widgets/buttons/back_button.dart';
 import 'package:travel_in/widgets/buttons/back_button_opacity.dart';
 import 'package:travel_in/widgets/buttons/like_button.dart';
 import 'package:travel_in/widgets/images/swiper_image.dart';
@@ -12,12 +11,14 @@ import 'package:travel_in/models/ResortModel.dart' as resort_model;
 
 class SliverCard extends StatelessWidget {
   const SliverCard(
-      {super.key, this.children = const [SizedBox()], required this.images, this.offer});
+      {super.key, this.children = const [SizedBox()], required this.images, this.offer,this.isMain=false});
   final List<Widget> children;
   final List<resort_model.Image> images;
   final ResortOfferModel? offer;
+  final bool isMain;
   @override
   Widget build(BuildContext context) {
+    
     return SliverAppBar(
       expandedHeight: getSize(context).height * 0.7,
       foregroundColor: Colors.transparent,
@@ -64,7 +65,7 @@ class SliverCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                    onTap: () {}, child: CustomBackButtonwithOpacity()),
+                    onTap: () {}, child: CustomBackButtonwithOpacity(isMain: isMain,)),
                 
                 offer==null? SizedBox() : GestureDetector(onTap: () {}, child: CustomLikeButton(
                       offer: offer!,
