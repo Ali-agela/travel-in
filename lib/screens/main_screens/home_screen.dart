@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )
                 : SliverCard(
-                    isMain: false,
+                    isMain: true,
                     images: resortsConsumer.resorts[0].images,
                     children: [
                       Container(

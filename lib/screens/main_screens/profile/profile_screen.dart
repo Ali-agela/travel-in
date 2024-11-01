@@ -28,14 +28,24 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  @override
-  void initState() {
-    Provider.of<AuthenticationProvider>(context, listen: false).getMe();
-    super.initState();
-  }
+//  @override
+//   void initState() {
+
+//     WidgetsBinding.instance.addPostFrameCallback((_) {
+//       Provider.of<AuthenticationProvider>(context, listen: false).getMe();
+//     });
+//     super.initState();
+//   }
 
   @override
   Widget build(BuildContext context) {
+    final authProvider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+
+    if (authProvider.currentUser == null) {
+      authProvider.getMe();
+      return Center(child: CircularProgressIndicator());
+    }
     return Consumer2<DarkModeProvider, AuthenticationProvider>(
         builder: (context, darkModeConsumer, authenticationConsumer, _) {
       return authenticationConsumer.currentUser == null
@@ -64,7 +74,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       children: [
                                         GestureDetector(
                                             onTap: () {},
-                                            child: CustomBackButton(isMain: true,)),
+                                            child: CustomBackButton(
+                                              isMain: true,
+                                            )),
                                       ])),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -157,12 +169,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 text: AppLocalizations.of(context)!
                                     .accountinformation,
                                 onTab: () {
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      CupertinoPageRoute(
-                                          builder: (context) =>
-                                              ProfileInfoScreen()),
-                                      (route) => false);
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) =>
+                                            ProfileInfoScreen()),
+                                  );
                                 },
                                 asset: "assets/icons/profile_icon.png",
                               ),
