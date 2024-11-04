@@ -72,6 +72,22 @@ flutter:
     - assets/icons/
     - assets/pics/
     - assets/explore/
+    - assets/explore/a/
+    - assets/explore/b/
+    - assets/explore/c/
+    - assets/explore/d/
+    - assets/explore/e/
+    - assets/explore/f/
+    - assets/explore/g/
+    - assets/explore/h/
+    - assets/explore/i/
+    - assets/explore/j/
+    - assets/explore/k/
+    - assets/explore/l/
+    - assets/explore/m/
+    - assets/explore/n/
+    - assets/explore/o/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

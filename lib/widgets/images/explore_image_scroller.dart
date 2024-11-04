@@ -15,7 +15,7 @@ class ExploreImageSlider extends StatefulWidget {
     required this.title,
     required this.description,
     this.buttonText = 'اكتشف المزيد',
-    this.onButtonPressed,
+    this.onButtonPressed, 
   });
 
   final List<ImageProvider> images;
@@ -23,7 +23,6 @@ class ExploreImageSlider extends StatefulWidget {
   final String description;
   final String buttonText;
   final VoidCallback? onButtonPressed;
-
   @override
   State<ExploreImageSlider> createState() => _ExploreImageSliderState();
 }
@@ -98,13 +97,14 @@ class _ExploreImageSliderState extends State<ExploreImageSlider> {
                         Text(
                           widget.description,
                           style: GoogleFonts.cairo(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.normal,
                             color: whitegrey,
                           ),
                           maxLines: isShowMore ? 50 : 1,
                           textAlign: TextAlign.justify,
                         ),
+                      
                         GestureDetector(
                           onTap: () => setState(() => isShowMore = !isShowMore),
                           child: Text(
